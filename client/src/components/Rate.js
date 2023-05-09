@@ -1,5 +1,5 @@
-import React, {useContext, useEffect, useState} from 'react';
-import {Card, Image, Spinner, Col, Form} from "react-bootstrap";
+import React, {useEffect, useState} from 'react';
+import {Card, Spinner} from "react-bootstrap";
 import {fetchPersonal} from "../http/userAPI";
 import {StarIcon} from "@heroicons/react/24/solid";
 
@@ -8,7 +8,6 @@ const Rate = ({rating}) => {
 
     useEffect(() => {
         fetchPersonal(rating.userId).then(data => setUser(data))
-        console.log(user)
     }, [rating])
 
     if (rating) {

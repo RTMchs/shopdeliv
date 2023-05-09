@@ -27,7 +27,6 @@ class DelBasketController {
                 {
                     where: {basketId: basketId}
                 })
-            console.log(basket)
             return res.json(basket)
         } catch (e) {
             next(ApiError.badRequest(e.message))

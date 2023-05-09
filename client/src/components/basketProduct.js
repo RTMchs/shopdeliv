@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useContext, useEffect} from 'react';
 import {Button, Card, Col, Image} from "react-bootstrap";
 import {deleteFromBasket, removeFromBasket} from "../http/deviceAPI";
 import {getCartAfterDelete} from "../pages/Basket";
@@ -7,7 +7,6 @@ import {Context} from "../index";
 const BasketProduct = ({product}) => {
     const {device} = useContext(Context);
     let am = product.amount;
-    console.log(product)
 
     useEffect( () => {
         am = product.amount

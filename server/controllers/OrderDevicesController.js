@@ -6,7 +6,6 @@ class OrderDevicesController {
     async addToOrder(req, res, next) {
         try {
             const {orderId, deviceId, amount} = req.body
-            console.log(orderId, deviceId, amount)
             const order = await OrderDevice.create({orderId: orderId, deviceId: deviceId, amount: amount})
             return res.json(order)
         } catch (e) {
@@ -17,9 +16,7 @@ class OrderDevicesController {
     async findOrderById(req, res, next) {
         try {
             const {id} = req.params
-            console.log(id)
             const order = await Order.findOne({where: {id: id}})
-            console.log(order)
             return res.json(order)
         } catch (e) {
             next(ApiError.badRequest(e.message))

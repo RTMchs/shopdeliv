@@ -1,8 +1,9 @@
-import React, {useContext, useState} from 'react';
+import React, {useState} from 'react';
 import Modal from "react-bootstrap/Modal";
 import {Button, Form} from "react-bootstrap";
-import {Context} from "../../index";
 import {createRate} from "../../http/deviceAPI";
+import {useNavigate} from "react-router-dom";
+import {SHOP_ROUTE} from "../../utils/consts";
 
 const CreateRate = ({show, onHide, deviceId}) => {
     const [value, setValue] = useState('')
@@ -12,10 +13,15 @@ const CreateRate = ({show, onHide, deviceId}) => {
     const [isSelected4, setIsSelected4] = useState(false)
     const [isSelected5, setIsSelected5] = useState(false)
     const [rate, setRate] = useState(0)
+    const navigate = useNavigate()
 
-        const addRate = async() => {
-            await createRate(rate, value, deviceId).then(data => console.log(data))
+    const addRate = async () => {
+        if (rate !== 0) {
+            await createRate(rate, value, deviceId).then(data => navigate(SHOP_ROUTE))
+        } else {
+            //ОПОВЕЩЕНИЕ ОБ ОШИБКЕ
         }
+    }
 
     return (
         <Modal
@@ -35,7 +41,7 @@ const CreateRate = ({show, onHide, deviceId}) => {
                         style={{
                             background: isSelected1 ? ['purple'] : ['#00CCBB']
                         }}
-                        onClick={() =>{
+                        onClick={() => {
                             setRate(1)
                             setIsSelected1(true)
                             setIsSelected4(false)
@@ -47,82 +53,83 @@ const CreateRate = ({show, onHide, deviceId}) => {
                         1
                     </Button>
                     <Button className='ml-2'
-                        variant='info'
-                        style={{
-                            background: isSelected2 ? ['purple'] : ['#00CCBB']
-                        }}
-                        onClick={() =>{
-                            setRate(2)
-                            setIsSelected2(true)
-                            setIsSelected4(false)
-                            setIsSelected3(false)
-                            setIsSelected5(false)
-                            setIsSelected1(false)
-                        }}
+                            variant='info'
+                            style={{
+                                background: isSelected2 ? ['purple'] : ['#00CCBB']
+                            }}
+                            onClick={() => {
+                                setRate(2)
+                                setIsSelected2(true)
+                                setIsSelected4(false)
+                                setIsSelected3(false)
+                                setIsSelected5(false)
+                                setIsSelected1(false)
+                            }}
                     >
                         2
                     </Button>
                     <Button className='ml-2'
-                        variant='info'
-                        style={{
-                            background: isSelected3 ? ['purple'] : ['#00CCBB']
-                        }}
-                        onClick={() =>{
-                            setRate(3)
-                            setIsSelected3(true)
-                            setIsSelected4(false)
-                            setIsSelected5(false)
-                            setIsSelected2(false)
-                            setIsSelected1(false)
-                        }}
+                            variant='info'
+                            style={{
+                                background: isSelected3 ? ['purple'] : ['#00CCBB']
+                            }}
+                            onClick={() => {
+                                setRate(3)
+                                setIsSelected3(true)
+                                setIsSelected4(false)
+                                setIsSelected5(false)
+                                setIsSelected2(false)
+                                setIsSelected1(false)
+                            }}
                     >
                         3
                     </Button>
                     <Button className='ml-2'
-                        variant='info'
-                        style={{
-                            background: isSelected4 ? ['purple'] : ['#00CCBB']
-                        }}
-                        onClick={() =>{
-                            setRate(4)
-                            setIsSelected4(true)
-                            setIsSelected5(false)
-                            setIsSelected3(false)
-                            setIsSelected2(false)
-                            setIsSelected1(false)
-                        }}
+                            variant='info'
+                            style={{
+                                background: isSelected4 ? ['purple'] : ['#00CCBB']
+                            }}
+                            onClick={() => {
+                                setRate(4)
+                                setIsSelected4(true)
+                                setIsSelected5(false)
+                                setIsSelected3(false)
+                                setIsSelected2(false)
+                                setIsSelected1(false)
+                            }}
                     >
                         4
                     </Button>
                     <Button className='ml-2'
-                        variant='info'
-                        style={{
-                            background: isSelected5 ? ['purple'] : ['#00CCBB']
-                        }}
-                        onClick={() =>{
-                            setRate(5)
-                            setIsSelected5(true)
-                            setIsSelected4(false)
-                            setIsSelected3(false)
-                            setIsSelected2(false)
-                            setIsSelected1(false)
-                        }}
+                            variant='info'
+                            style={{
+                                background: isSelected5 ? ['purple'] : ['#00CCBB']
+                            }}
+                            onClick={() => {
+                                setRate(5)
+                                setIsSelected5(true)
+                                setIsSelected4(false)
+                                setIsSelected3(false)
+                                setIsSelected2(false)
+                                setIsSelected1(false)
+                            }}
                     >
                         5
                     </Button>
                 </div>
                 <Form>
                     <Form.Control as="textarea" rows={3}
-                        value={value}
-                        onChange={e => {
-                            if (e.target.value.length <= 250) {
-                                setValue(e.target.value)
-                            }
-                        }}
-                        placeholder={"Комментарий"}
+                                  value={value}
+                                  onChange={e => {
+                                      if (e.target.value.length <= 250) {
+                                          setValue(e.target.value)
+                                      }
+                                  }}
+                                  placeholder={"Комментарий"}
                     />
                     <div className='w-100 text-right'
-                    style={{color: value.length < 250 ? ['#80526c'] : ['RED']}}>{value.length}/250</div>
+                         style={{color: value.length < 250 ? ['#80526c'] : ['RED']}}>{value.length}/250
+                    </div>
                 </Form>
             </Modal.Body>
             <Modal.Footer>

@@ -167,8 +167,8 @@ export const createRate = async (rate, description, deviceId) => {
     return response
 }
 
-export const getAllRates = async (id) => {
-    const {data} = await $host.get('api/rating/' + id)
+export const getAllRates = async (id, userId) => {
+    const {data} = await $host.get('api/rating/' + id, {params:{userId : userId}})
     return data
 }
 //------------------------------ЗАКАЗЫ------------------------------//

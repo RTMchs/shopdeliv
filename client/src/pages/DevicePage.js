@@ -81,7 +81,7 @@ const DevicePage = () => {
                             >
                                 <div className="d-flex flex-column px-2 py-2 w-100 overflow-auto">
                                     <h4 className='text-center mb-2'>Характеристики:</h4>
-                                    {oneDevice.info.map((info, index) =>
+                                    {oneDevice.info.map((info) =>
                                         <div
                                             key={info.id}
                                             className='rounded px-1 my-1 d-flex'
@@ -110,7 +110,7 @@ const DevicePage = () => {
                         <div className="d-flex flex-column align-items-center my-2">
                             <Card
                                 className="d-flex flex-column align-items-center w-100 justify-content-around"
-                                style={{fontSize: 32, border: '5px solid lightgray'}}
+                                style={{height: 400 ,fontSize: 32, border: '5px solid lightgray'}}
                             >
                                 <div className="d-flex flex-column px-2 w-100 overflow-auto">
                                     <h4 className='mb-2 text-center '>Отзывы:</h4>
