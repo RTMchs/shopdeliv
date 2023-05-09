@@ -76,7 +76,6 @@ class DeviceController {
         if (brandId && typeId) {
             devices = await Device.findAndCountAll({where:{typeId, brandId}, limit, offset})
         }
-            console.log(devices)
         return res.json(devices)
         } catch (e) {
             next(ApiError.badRequest(e.message))

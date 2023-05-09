@@ -14,11 +14,11 @@ const Orders = () => {
     if (device.orders.length > 0) {
         return (
             <div className='px-2 py-0'>
-                <Row className="d-flex">
+                <div className='row'>
                     { device.orders.map(order =>
                         <OrderItem key={order.id} order={order}/>
                     )}
-                </Row>
+                </div>
             </div>
         );
     } else {

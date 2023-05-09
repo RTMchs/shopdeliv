@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {Card, Image, Spinner, Col} from "react-bootstrap";
 import {fetchOneDevice, getOneBrand} from "../http/deviceAPI";
 import star from "../assets/star.png";
-import CreateRate from "./modals/createRate";
+import CreateRate from "./modals/CreateRate";
 
 const OrderedDevice = ({orderedDevice}) => {
     const [device, setDevice] = useState()
@@ -13,7 +13,6 @@ const OrderedDevice = ({orderedDevice}) => {
     useEffect(() => {
         fetchOneDevice(orderedDevice.deviceId).then(data => setDevice(data))
     }, [])
-
 
     if (device) {
         const getBrandName = async (id) => {
@@ -36,7 +35,7 @@ const OrderedDevice = ({orderedDevice}) => {
                         <h6
                             style={{
                                 cursor: 'pointer',
-                                color: isHover ? ['#00CCBB'] : ['#9f6788']
+                                color: isHover ? ['#00CCBB'] : ['#80526c']
                             }}
                             className='mt-1'
                             onClick={() => setRateVisible(true)}
@@ -52,7 +51,7 @@ const OrderedDevice = ({orderedDevice}) => {
                         <div className='text-right text-black-50'>Итого: {sum}₽</div>
                     </div>
                 </div>
-                <CreateRate show={rateVisible} onHide={() => setRateVisible(false)}/>
+                <CreateRate show={rateVisible} onHide={() => setRateVisible(false)} deviceId={device.id}/>
             </Card>
         );
     } else {

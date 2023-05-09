@@ -94,7 +94,7 @@ const Order = () => {
         return (
             <Container className='justify-content-center align-items-center'>
                 <div className='px-5 py-3 w-75 m-auto justify-content-center align-items-center'>
-                    <h4 style={{color: ['#9f6788']}}>Укажите ФИО получателя:</h4>
+                    <h4 style={{color: ['#80526c']}}>Укажите ФИО получателя:</h4>
                     <Form>
                         <Form.Control
                             value={l}
@@ -132,11 +132,11 @@ const Order = () => {
                         </Button>
                     </Form>
                     <hr/>
-                    <h4 style={{color: ['#9f6788']}}>Укажите АДРЕС получателя:</h4>
+                    <h4 style={{color: ['#80526c']}}>Укажите АДРЕС получателя:</h4>
                     <Form>
-                        <h6 style={{color: ['#9f6788']}} className='m-0 p-0 font-weight-light'>Адрес в формате: ул д
+                        <h6 style={{color: ['#80526c']}} className='m-0 p-0 font-weight-light'>Адрес в формате: ул д
                             кв</h6>
-                        <h6 style={{color: ['#9f6788']}} className='mt-0 mb-1 p-0'>Пример: ул Кирова д 1 кв 1</h6>
+                        <h6 style={{color: ['#80526c']}} className='mt-0 mb-1 p-0'>Пример: ул Кирова д 1 кв 1</h6>
                         <Form.Control
                             value={address}
                             onChange={e => setAddress(e.target.value)}
@@ -158,7 +158,7 @@ const Order = () => {
                         >
                             Найти
                         </Button>
-                        <h5 style={{color: ['#9f6788']}} className='mt-0 mb-1 p-0'>{addressRes}</h5>
+                        <h5 style={{color: ['#80526c']}} className='mt-0 mb-1 p-0'>{addressRes}</h5>
                         <Button
                             disabled={isActive}
                             variant='success'
@@ -175,7 +175,7 @@ const Order = () => {
     } else {
         return (
             <Container className='justify-content-center align-items-center'>
-                <h3 style={{color: ['#9f6788']}} className='p-5 mt-5 w-100 text-center'>Ваша корзина пуста, невозможно сделать заказ!</h3>
+                <h3 style={{color: ['#80526c']}} className='p-5 mt-5 w-100 text-center'>Ваша корзина пуста, невозможно сделать заказ!</h3>
                 <div className='text-center w-100'>
                     <Button  variant='outline-success w-25' onClick={() => navigate(SHOP_ROUTE)}>На главную</Button>
                 </div>

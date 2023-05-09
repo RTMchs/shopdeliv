@@ -75,9 +75,9 @@ const EditPersonal = ({show, onHide}) => {
                         placeholder={"Email"}
                         className='mb-3'
                     />
-                    <hr style={{borderColor:['#9f6788']}} className='mt-2 p-0 mb-1'/>
-                    <h6 style={{color:['#9f6788']}} className='m-0 p-0 font-weight-light'>В формате: ул д кв</h6>
-                    <h6 style={{color:['#9f6788']}} className='mt-0 mb-1 p-0'>Пример: ул Кирова д 1 кв 1</h6>
+                    <hr style={{borderColor:['#80526c']}} className='mt-2 p-0 mb-1'/>
+                    <h6 style={{color:['#80526c']}} className='m-0 p-0 font-weight-light'>В формате: ул д кв</h6>
+                    <h6 style={{color:['#80526c']}} className='mt-0 mb-1 p-0'>Пример: ул Кирова д 1 кв 1</h6>
                     <Form.Control
                         value={address}
                         onChange={e => setAddress(e.target.value)}

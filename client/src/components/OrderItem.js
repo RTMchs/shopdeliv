@@ -19,19 +19,19 @@ const OrderItem = ({order}) => {
             onMouseLeave={() => setIsHover(false)}
             style={{cursor:'pointer', borderColor: isHover ? ['#00CCBB'] : ['#c9c9c9']}}
         >
-            <div className='w-100 d-flex'>
+            <div className='w-100 d-flex '>
                 <h6 className="pl-1">Получатель:</h6>
-                <h6 style={{color: ['#9f6788']}} className="pl-1">{order.last_name} {order.first_name} {order.middle_name}</h6>
+                <h6 style={{color: ['#80526c']}} className="pl-1">{order.last_name} {order.first_name} {order.middle_name}</h6>
             </div>
 
             <div className='w-100 d-flex'>
                 <h6 className="pl-1">Дата:</h6>
-                <h6 style={{color: ['#9f6788']}} className="pl-1"> {string} </h6>
+                <h6 style={{color: ['#80526c']}} className="pl-1"> {string} </h6>
             </div>
 
             <div className='w-100 d-flex'>
                 <h6 className="pl-1">Адрес:</h6>
-                <h6 style={{color: ['#9f6788']}} className="pl-1"> {order.address} </h6>
+                <h6 style={{color: ['#80526c']}} className="pl-1"> {order.address} </h6>
             </div>
 
         </Card>

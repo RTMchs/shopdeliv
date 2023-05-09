@@ -1,10 +1,10 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useContext, useState} from 'react';
 import Modal from "react-bootstrap/Modal";
 import {Button, Form} from "react-bootstrap";
 import {Context} from "../../index";
+import {createRate} from "../../http/deviceAPI";
 
-const CreateRate = ({show, onHide}) => {
-    const {device} = useContext(Context)
+const CreateRate = ({show, onHide, deviceId}) => {
     const [value, setValue] = useState('')
     const [isSelected1, setIsSelected1] = useState(false)
     const [isSelected2, setIsSelected2] = useState(false)
@@ -13,9 +13,10 @@ const CreateRate = ({show, onHide}) => {
     const [isSelected5, setIsSelected5] = useState(false)
     const [rate, setRate] = useState(0)
 
-    const addRate = () => {
-        //createRate()
-    }
+        const addRate = async() => {
+            await createRate(rate, value, deviceId).then(data => console.log(data))
+        }
+
     return (
         <Modal
             show={show}
@@ -121,7 +122,7 @@ const CreateRate = ({show, onHide}) => {
                         placeholder={"Комментарий"}
                     />
                     <div className='w-100 text-right'
-                    style={{color: value.length < 250 ? ['#9f6788'] : ['RED']}}>{value.length}/250</div>
+                    style={{color: value.length < 250 ? ['#80526c'] : ['RED']}}>{value.length}/250</div>
                 </Form>
             </Modal.Body>
             <Modal.Footer>

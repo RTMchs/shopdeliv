@@ -39,7 +39,7 @@ const DeviceItem = ({device}) => {
                 <div className='d-flex'>
                     <div className="mt-1 d-flex justify-content-between align-items-center w-100 px-1">
                         <div>Цена:</div>
-                        <div style={{color: ['#9f6788']}}>{device.price} ₽</div>
+                        <div style={{color: ['#80526c']}}>{device.price} ₽</div>
                     </div>
                 </div>
             </Card>

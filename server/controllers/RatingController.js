@@ -1,4 +1,4 @@
-const {Rating} = require("../models/models")
+const {Rating, Device} = require("../models/models")
 const ApiError = require("../error/ApiError");
 
 class RatingController {
@@ -6,9 +6,11 @@ class RatingController {
     async getAll(req, res, next) {
         try {
             const {id} = req.params
+            console.log(id)
             const ratings = await Rating.findAll({
                 where: {deviceId: id}
             })
+            console.log(ratings)
             return res.json(ratings)
         } catch (e) {
             next(ApiError.badRequest(e.message))
@@ -18,13 +20,16 @@ class RatingController {
         try {
             const user = req.user
             const {rate, description, deviceId} = req.body
-            const rating = await Rating.create({
-                rate: rate,
-                description: description,
-                deviceId: deviceId,
-                userId: user.id
+            // const rating = await Rating.create({
+            //     rate: rate,
+            //     description: description,
+            //     deviceId: deviceId,
+            //     userId: user.id
+            // })
+            const ratings = await Rating.findAndCountAll({
+                where: {deviceId: deviceId}
             })
-            return res.json(rating)
+            // return res.json(rating)
         } catch (e) {
             next(ApiError.badRequest(e.message))
         }

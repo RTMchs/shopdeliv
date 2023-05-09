@@ -23,27 +23,27 @@ const OrderPage = observer(() => {
 
     return (
         <div className="justify-content-between align-items-center mt-5 w-100">
-            <h2 style={{color: ['#9f6788']}} className='m-auto w-50 text-center'>Заказ № {device.selectedOrder.id}</h2>
+            <h2 style={{color: ['#80526c']}} className='m-auto w-50 text-center'>Заказ № {device.selectedOrder.id}</h2>
 
             <Container className="justify-content-between align-items-center mt-1 w-100">
                 <div className='w-100 px-2 mx-auto my-4'>
                     <div className='d-flex w-100 mx-auto justify-content-center'>
                         <h6 className='text-center'>Получатель:</h6>
-                        <h6 style={{color: ['#9f6788']}} className='ml-2 text-center'
+                        <h6 style={{color: ['#80526c']}} className='ml-2 text-center'
                         >
                             {device.selectedOrder.last_name} {device.selectedOrder.first_name} {device.selectedOrder.middle_name}
                         </h6>
                     </div>
                     <div className='d-flex w-100 justify-content-center'>
                         <h6 className='text-center'>Адрес:</h6>
-                        <h6 style={{color: ['#9f6788']}} className='ml-2'
+                        <h6 style={{color: ['#80526c']}} className='ml-2'
                         >
                             {device.selectedOrder.address}
                         </h6>
                     </div>
                     <div className='d-flex w-100 justify-content-center'>
                         <h6 className='text-center'>Дата:</h6>
-                        <h6 style={{color: ['#9f6788']}} className='ml-2'
+                        <h6 style={{color: ['#80526c']}} className='ml-2'
                         >
                             {formatDate}
                         </h6>

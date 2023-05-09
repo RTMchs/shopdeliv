@@ -15,6 +15,7 @@ export default class DeviceStore {
         this._orders = []
         this._selectedOrder = {}
         this._orderedDevices = []
+        this._ratings = []
         makeAutoObservable(this)
     }
 
@@ -58,6 +59,9 @@ export default class DeviceStore {
     setSelectedOrder(selectedOrder) {
         this._selectedOrder = selectedOrder;
     }
+    setRatings(ratings) {
+        this._ratings = ratings
+    }
 
     get brandName() {
         return this._brandName
@@ -97,5 +101,8 @@ export default class DeviceStore {
     }
     get selectedOrder() {
         return this._selectedOrder
+    }
+    get ratings() {
+        return this._ratings
     }
 }

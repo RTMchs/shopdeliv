@@ -47,7 +47,7 @@ const Basket = observer(() => {
                 <div className='justify-content-between align-items-center w-100 m-auto'>
                     <div className="d-flex flex-row p-2 justify-content-between align-items-center mb-2">
                         <h4 className="pr-2 font-weight-light">Итого:</h4>
-                        <h4 style={{color: ['#9f6788']}} className="pl-1">{price}₽</h4>
+                        <h4 style={{color: ['#80526c']}} className="pl-1">{price}₽</h4>
                     </div>
                     <Button
                         variant={"outline-success"}
@@ -55,7 +55,7 @@ const Basket = observer(() => {
                         onClick={() => navigate(ORDER_ROUTE)}>Оформить заказ</Button>
                 </div>
                 :
-                <div style={{color: ['#9f6788']}}
+                <div style={{color: ['#80526c']}}
                      className="d-flex flex-row justify-content-between align-items-center mb-2">
                     <h1>Пусто</h1>
                 </div>

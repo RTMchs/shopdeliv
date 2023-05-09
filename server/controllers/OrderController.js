@@ -19,28 +19,6 @@ class OrderController {
         }
     }
 
-    // async setAddress(req, res, next) {
-    //     try {
-    //         const {address, userId} = req.body
-    //         const or = await Order.findAll(
-    //             {where: {userId: userId},
-    //                 order: [
-    //                     ['id', 'DESC']
-    //                 ],
-    //                 limit:1
-    //             })
-    //         const orderId = or[0].dataValues.id
-    //
-    //         const order = await Order.update(
-    //             {address: address},
-    //             {
-    //                 where: {id: orderId}
-    //             })
-    //         return res.json(order)
-    //     } catch (e) {
-    //         next(ApiError.badRequest(e.message))
-    //     }
-    // }
 
     async getOrdersUser(req, res, next) {
         try {

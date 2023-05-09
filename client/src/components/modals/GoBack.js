@@ -19,7 +19,7 @@ const GoBack = ({show, onHide}) => {
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                <h4 style={{color: ['#9f6788']}} className="pl-1">Ваш заказ принят!</h4>
+                <h4 style={{color: ['#80526c']}} className="pl-1">Ваш заказ принят!</h4>
                 <Button variant='outline-success' onClick={() => navigate(SHOP_ROUTE)}>На главную!</Button>
             </Modal.Body>
         </Modal>

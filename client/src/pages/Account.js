@@ -37,28 +37,28 @@ const Account = observer(() => {
     if (user)
     return (
         <div className="justify-content-between align-items-center mt-3 w-100">
-            <h2 style={{color: ['#9f6788']}} className='m-auto w-50 text-center'>Личный кабинет</h2>
-            <Container className="justify-content-between align-items-center mt-1 p-5 w-100">
-                <Card className='w-75 px-3 mx-auto'>
-                    <h5 className='text-center'>Данные:</h5>
+            <h2 style={{color: ['#80526c']}} className='m-auto w-50 text-center'>Личный кабинет</h2>
+            <Container className="justify-content-between align-items-center mt-1 p-5 w-100 row mx-auto">
+                <Card className='col-12 col-md-8 col-lg-8 px-3 mx-auto row'>
+                    <h5 className='text-center col align-self-center'>Данные:</h5>
                     <div className='d-flex w-100 flex-row p-2 justify-content-between align-items-center'>
-                        <div className='ml-1 w-100 d-flex'>
+                        <div className='ml-1 w-100 d-flex align-self-start'>
                             <h6>ФИО:</h6>
-                            <h6 style={{color: ['#9f6788']}}
+                            <h6 style={{color: ['#80526c']}}
                                 className='ml-1 w-100'>{user.lastName} {user.firstName} {user.middleName}</h6>
                         </div>
                     </div>
 
                     <div className='d-flex w-100 flex-row p-2 justify-content-between align-items-center'>
-                        <div className='ml-1 w-100 d-flex'>
+                        <div className='ml-1 w-100 d-flex align-self-start'>
                             <h6>Email:</h6>
-                            <h6 style={{color: ['#9f6788']}} className='ml-1 w-100'>{user.email}</h6>
+                            <h6 style={{color: ['#80526c']}} className='ml-1 w-100'>{user.email}</h6>
                         </div>
                     </div>
                     <div className='d-flex w-100 flex-row p-2 justify-content-between align-items-center'>
-                        <div className='ml-1 w-100 d-flex'>
+                        <div className='ml-1 w-100 d-flex  align-self-start'>
                             <h6>Адрес:</h6>
-                            <h6 style={{color: ['#9f6788']}} className='ml-1 w-100'>{user.address}</h6>
+                            <h6 style={{color: ['#80526c']}} className='ml-1 w-100'>{user.address}</h6>
                         </div>
                     </div>
                     <Button
@@ -71,7 +71,7 @@ const Account = observer(() => {
                     </Button>
 
                 </Card>
-                <Card className='w-75 px-3 mx-auto mt-3'>
+                <Card className='px-3 mx-auto mt-3 col-12 col-md-8 col-lg-8'>
                     <h5 className='text-center'>История заказов:</h5>
                     <Orders/>
                 </Card>

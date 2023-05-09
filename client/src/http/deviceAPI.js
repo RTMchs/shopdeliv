@@ -168,7 +168,7 @@ export const createRate = async (rate, description, deviceId) => {
 }
 
 export const getAllRates = async (id) => {
-    const {response} = await $authHost.get('api/rating/' + id)
-    return response
+    const {data} = await $host.get('api/rating/' + id)
+    return data
 }
 //------------------------------ЗАКАЗЫ------------------------------//

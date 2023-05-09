@@ -32,14 +32,14 @@ const BasketProduct = ({product}) => {
             <div className="d-flex w-100">
                 <Col>
                     <div style={{height: 50}} className="d-flex flex-row flex-grow-1 align-items-center">
-                        <h4 style={{width: 30, color: ['#9f6788']}} className="text-color pt-1">x{am}</h4>
+                        <h4 style={{width: 30, color: ['#80526c']}} className="text-color pt-1">x{am}</h4>
                         <Image className='rounded' src={process.env.REACT_APP_API_URL + product.device.img} width={45} height={45} />
                         <h4 className="pt-1 ml-1 font-weight-light">{product.device.name}</h4>
                     </div>
                 </Col>
                 <Col>
                     <div className="d-flex h-100 flex-row justify-content-end align-items-center">
-                        <h4 style={{color: ['#9f6788']}} className="pt-2">{product.device.price}₽</h4>
+                        <h4 style={{color: ['#80526c']}} className="pt-2">{product.device.price}₽</h4>
 
                         <Button variant={'outline-info'}
                                 style={{borderColor:['#00CCBB']}}
