@@ -21,7 +21,7 @@ const OrderPage = observer(() => {
     let formatDate = date.toLocaleString().toString()
     if (device.selectedOrder.userId === user.id) {
         return (
-            <div className="justify-content-between align-items-center mt-5 w-100">
+            <div className="justify-content-between align-items-center mt-5 w-100 min-vh-100">
                 <h2 style={{color: ['#80526c']}} className='m-auto w-50 text-center'>Заказ
                     № {device.selectedOrder.id}</h2>
 
@@ -67,7 +67,7 @@ const OrderPage = observer(() => {
         )
     } else {
         return (
-            <div className="justify-content-between align-items-center mt-5 w-100">
+            <div className="justify-content-between align-items-center mt-5 w-100 min-vh-100">
                 <Container className="justify-content-between align-items-center mt-1 w-100">
                     <h1 className='w-100 text-center'>Нет доступа</h1>
                 </Container>

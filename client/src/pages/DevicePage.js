@@ -22,8 +22,6 @@ const DevicePage = () => {
         getRates()
     }, [device])
 
-
-
     const addIntoBasket = () => {
         const formData = new FormData()
         formData.append('deviceId', id)
@@ -32,7 +30,7 @@ const DevicePage = () => {
 
     if (oneDevice.name) {
         return (
-            <Container className="mt-3 ">
+            <Container className="mt-3 min-vh-100">
                 <h2 className='w-100 text-center'>{oneDevice.name}</h2>
                 <Row className='justify-content-center'>
                     <Col className='col-lg-4 col-md-6 col-sm-12'>

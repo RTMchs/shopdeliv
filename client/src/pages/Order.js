@@ -92,7 +92,7 @@ const Order = () => {
     }
     if (device.basket.length > 0) {
         return (
-            <Container className='justify-content-center align-items-center'>
+            <Container className='justify-content-center align-items-center min-vh-100'>
                 <div className='px-5 py-3 w-75 m-auto justify-content-center align-items-center'>
                     <h4 style={{color: ['#80526c']}}>Укажите ФИО получателя:</h4>
                     <Form>
@@ -174,7 +174,7 @@ const Order = () => {
         );
     } else {
         return (
-            <Container className='justify-content-center align-items-center'>
+            <Container className='justify-content-center align-items-center min-vh-100'>
                 <h3 style={{color: ['#80526c']}} className='p-5 mt-5 w-100 text-center'>Ваша корзина пуста, невозможно сделать заказ!</h3>
                 <div className='text-center w-100'>
                     <Button  variant='outline-success w-25' onClick={() => navigate(SHOP_ROUTE)}>На главную</Button>

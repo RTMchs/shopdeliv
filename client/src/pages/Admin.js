@@ -16,7 +16,7 @@ const Admin = () => {
     const [delDeviceVisible, setDelDeviceVisible] = useState(false)
 
     return (
-        <Container className="d-flex flex-column">
+        <Container className="d-flex flex-column min-vh-100">
             <Button
                 variant={"outline-danger"}
                 className="mt-4 p-2"

@@ -36,7 +36,7 @@ const Account = observer(() => {
 
     if (user)
     return (
-        <div className="justify-content-between align-items-center mt-3 w-100">
+        <div className="justify-content-between align-items-center mt-3 w-100 min-vh-100">
             <h2 style={{color: ['#80526c']}} className='m-auto w-50 text-center'>Личный кабинет</h2>
             <Container className="justify-content-between align-items-center mt-1 p-5 w-100 row mx-auto">
                 <Card className='col-12 col-md-8 col-lg-8 px-3 mx-auto row'>

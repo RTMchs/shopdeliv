@@ -12,7 +12,7 @@ root.render(
       user: new UserStore(),
       device: new DeviceStore()
   }}>
-    <App />
+    <App/>
   </Context.Provider>
 );
 

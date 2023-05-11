@@ -16,13 +16,16 @@ export default class DeviceStore {
         this._selectedOrder = {}
         this._orderedDevices = []
         this._ratings = []
+        this._searchedDevices = []
         makeAutoObservable(this)
     }
 
+    setSearchedDevices (searchedDevices) {
+        this._searchedDevices = searchedDevices
+    }
     setBrandName(name) {
         this._brandName = name
     }
-
     setTypes(types) {
         this._types = types
     }
@@ -63,6 +66,9 @@ export default class DeviceStore {
         this._ratings = ratings
     }
 
+    get searchedDevices() {
+        return this._searchedDevices
+    }
     get brandName() {
         return this._brandName
     }

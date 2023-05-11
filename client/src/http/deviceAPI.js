@@ -70,6 +70,11 @@ export const fetchOneDevice = async (id) => {
     const {data} = await $host.get('api/device/' + id)
     return data
 }
+
+export const fetchSearchedDevice = async (value) => {
+    const {data} = await $host.get('api/search', {params:{value:value}})
+    return data
+}
 //------------------------------ТОВАРЫ------------------------------//
 
 //------------------------------КОРЗИНА------------------------------//

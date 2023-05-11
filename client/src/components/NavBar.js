@@ -28,7 +28,7 @@ const NavBar = observer(() => {
         return (
             <Navbar bg="dark" variant="dark">
                 <Container>
-                    <NavLink style={{color:'white'}} to={SHOP_ROUTE}>Чеснок Деливери</NavLink>
+                    <NavLink style={{color:'white'}} to={SHOP_ROUTE}>Exem Delivery</NavLink>
                     {user.role === 'ADMIN' ?
                         <Nav className="ml-auto" style={{color: 'white'}}>
                             <Button

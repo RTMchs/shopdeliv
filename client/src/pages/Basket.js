@@ -36,7 +36,7 @@ const Basket = observer(() => {
 
     return (
         <Container
-            className="flex-sm-column justify-content-center align-items-center mt-3"
+            className="flex-sm-column justify-content-center align-items-center mt-3 min-vh-100"
         >
             <h1 className="pb-2">Корзина:</h1>
 
