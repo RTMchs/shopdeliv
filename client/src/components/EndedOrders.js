@@ -1,15 +1,14 @@
 import React, {useContext, useEffect} from 'react';
-import {getOrders} from "../http/deviceAPI";
+import {getEndedOrders} from "../http/deviceAPI";
 import {Context} from "../index";
 import OrderItem from "./OrderItem";
 import {observer} from "mobx-react-lite";
 
-const Orders = observer(() => {
+const EndedOrders = observer(() => {
     const {device} = useContext(Context)
 
     useEffect(() => {
-        getOrders().then(data => device.setOrders(data))
-        console.log(device.orders)
+        getEndedOrders().then(data => device.setOrders(data))
     }, [device])
 
     if (device.orders.length > 0) {
@@ -26,11 +25,11 @@ const Orders = observer(() => {
         return (
             <div className='px-2 py-0'>
                 <h5 style={{color:'#80526c'}} className="p-5 text-center">
-                    Вы ещё не сделали ни одной покупки
+                    На данный момент нет заказов
                 </h5>
             </div>
         );
     }
 });
 
-export default Orders;
+export default EndedOrders;

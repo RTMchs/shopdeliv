@@ -7,6 +7,7 @@ import {Context} from "../../index";
 const CreateBrand = ({show, onHide}) => {
     const {device} = useContext(Context)
     const [value, setValue] = useState('')
+    const [er, setEr] = useState('')
 
     useEffect(() => {
         fetchBrands().then(data => device.setBrands(data))
@@ -18,12 +19,11 @@ const CreateBrand = ({show, onHide}) => {
                 setValue('')
                 fetchBrands().then(data => device.setBrands(data))
                 device.setSelectedBrand({})
-                alert ('Брэнд успешно создан')
+                setEr('')
                 onHide()
             })
-
         } else {
-            alert("Введите название брэнда!")
+            setEr("Введите название брэнда!")
         }
     }
     return (
@@ -44,6 +44,7 @@ const CreateBrand = ({show, onHide}) => {
                         onChange={e => setValue(e.target.value)}
                         placeholder={"Введите название брэнда"}
                     />
+                    <h6 style={{color:"red"}}>{er}</h6>
                 </Form>
             </Modal.Body>
             <Modal.Footer>

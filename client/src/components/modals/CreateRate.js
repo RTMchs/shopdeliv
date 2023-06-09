@@ -12,14 +12,16 @@ const CreateRate = ({show, onHide, deviceId}) => {
     const [isSelected3, setIsSelected3] = useState(false)
     const [isSelected4, setIsSelected4] = useState(false)
     const [isSelected5, setIsSelected5] = useState(false)
+    const [err, setErr] = useState('')
     const [rate, setRate] = useState(0)
     const navigate = useNavigate()
 
     const addRate = async () => {
         if (rate !== 0) {
-            await createRate(rate, value, deviceId).then(data => navigate(SHOP_ROUTE))
+            createRate(rate, value, deviceId).then(data => navigate(SHOP_ROUTE))
+            setErr('')
         } else {
-            //ОПОВЕЩЕНИЕ ОБ ОШИБКЕ
+            setErr('Пожалуйста оцените товар')
         }
     }
 
@@ -130,6 +132,8 @@ const CreateRate = ({show, onHide, deviceId}) => {
                     <div className='w-100 text-right'
                          style={{color: value.length < 250 ? ['#80526c'] : ['RED']}}>{value.length}/250
                     </div>
+
+                    <h6 style={{color:"red"}}>{err}</h6>
                 </Form>
             </Modal.Body>
             <Modal.Footer>

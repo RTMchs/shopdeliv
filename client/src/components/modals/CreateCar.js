@@ -1,28 +1,30 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import Modal from "react-bootstrap/Modal";
-import {Form, Button} from "react-bootstrap";
-import {createType, fetchTypes} from "../../http/deviceAPI";
+import {Button, Form} from "react-bootstrap";
 import {Context} from "../../index";
+import {createCar, fetchCars} from "../../http/userAPI";
 
-const CreateType = ({show, onHide}) => {
+const CreateCar = ({show, onHide}) => {
+    const {user} = useContext(Context)
     const [value, setValue] = useState('')
-    const {device} = useContext(Context)
     const [er, setEr] = useState('')
 
-    const addType = () => {
+    useEffect(() => {
+        fetchCars().then(data => user.setCars(data))
+    }, [user])
+
+    const addCar = () => {
         if (value !== '') {
-            createType({name: value}).then(data => {
+            createCar({name: value}).then(data => {
                 setValue('')
-                fetchTypes().then(data => device.setTypes(data))
-                device.setSelectedType({})
+                fetchCars().then(data => user.setCars(data))
                 setEr('')
                 onHide()
             })
         } else {
-            setEr('Введите название типа товара!')
+            setEr("Введите название Автомобиля!")
         }
     }
-
     return (
         <Modal
             show={show}
@@ -31,7 +33,7 @@ const CreateType = ({show, onHide}) => {
         >
             <Modal.Header closeButton>
                 <Modal.Title id="contained-modal-title-vcenter">
-                    Добавить тип
+                    Добавить Автомобиль
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body>
@@ -39,17 +41,17 @@ const CreateType = ({show, onHide}) => {
                     <Form.Control
                         value={value}
                         onChange={e => setValue(e.target.value)}
-                        placeholder={"Введите название типа"}
+                        placeholder={"Введите название автомобиля"}
                     />
                     <h6 style={{color:"red"}}>{er}</h6>
                 </Form>
             </Modal.Body>
             <Modal.Footer>
                 <Button variant="outline-danger" onClick={onHide}>Закрыть</Button>
-                <Button variant="outline-success" onClick={addType}>Добавить</Button>
+                <Button variant="outline-success" onClick={addCar}>Добавить</Button>
             </Modal.Footer>
         </Modal>
     );
 };
 
-export default CreateType;
+export default CreateCar;

@@ -18,11 +18,12 @@ const DeviceItem = ({device}) => {
 
     const navigate = useNavigate()
     return (
-        <Col md={3} className="mt-3" onClick={() => navigate(DEVICE_ROUTE + '/' + device.id)}>
+        <Col md={4} lg={3} sm={6} className="mt-3 col-12">
             <Card className="mx-auto pb-1"
                   onMouseEnter={() => setIsHover(true)}
                   onMouseLeave={() => setIsHover(false)}
                   style={{width: 130, cursor: 'pointer', borderColor: isHover ? ['#00CCBB'] : ['#c9c9c9']}}
+                  onClick={() => navigate(DEVICE_ROUTE + '/' + device.id)}
             >
                 <Image
                     width={120} height={120}

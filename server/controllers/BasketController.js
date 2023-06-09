@@ -1,9 +1,7 @@
-const {Device, BasketDevice, Basket} = require("../models/models")
+const {Device, BasketDevice} = require("../models/models")
 const ApiError = require("../error/ApiError");
 
 class BasketController {
-    // ------ CRUD корзины ------ //
-
     async addToBasket(req, res, next) {
         try {
             const user = req.user
@@ -81,6 +79,23 @@ class BasketController {
         })
 
         return res.json(basket)
+    }
+
+    async deleteFromAllBaskets(req, res, next) {
+        try {
+            const {id} = req.params
+            const type = await BasketDevice.destroy(
+                {
+                    where: {deviceId: id}
+                })
+            if (type === 1) {
+                return res.json('Товар был удалён из корзины')
+            } else {
+                return res.json('Невозможно удалить товар')
+            }
+        } catch (e) {
+            next(ApiError.badRequest(e.message))
+        }
     }
 
 }

@@ -13,6 +13,10 @@ export default class DeviceStore {
         this._baskets = []
         this._brandName = ''
         this._orders = []
+        this._avOrders = []
+        this._curOrders = []
+        this._lat = 0
+        this._lon = 0
         this._selectedOrder = {}
         this._orderedDevices = []
         this._ratings = []
@@ -35,7 +39,6 @@ export default class DeviceStore {
     setDevices(devices) {
         this._devices = devices
     }
-
     setSelectedType(type) {
         this.setPage(1)
         this._selectedType = type
@@ -55,6 +58,18 @@ export default class DeviceStore {
     }
     setOrders(orders) {
         this._orders = orders
+    }
+    setAvOrders(avOrders) {
+        this._avOrders = avOrders
+    }
+    setCurOrders(curOrders) {
+        this._curOrders = curOrders
+    }
+    setLat(lat) {
+        this._lat = lat
+    }
+    setLon(lon) {
+        this._lon = lon
     }
     setOrderedDevices(orderedDevices) {
         this._orderedDevices = orderedDevices
@@ -101,6 +116,18 @@ export default class DeviceStore {
     }
     get orders() {
         return this._orders
+    }
+    get avOrders() {
+        return this._avOrders
+    }
+    get curOrders() {
+        return this._curOrders
+    }
+    get lat() {
+        return this._lat
+    }
+    get lon() {
+        return this._lon
     }
     get orderedDevices() {
         return this._orderedDevices

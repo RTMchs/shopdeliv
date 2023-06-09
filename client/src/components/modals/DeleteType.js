@@ -8,6 +8,7 @@ const DeleteType = ({show, onHide}) => {
     const {device} = useContext(Context)
     const [id, setId] = useState(0)
     const [typeName, setTypeName] = useState('')
+    const [er, setEr] = useState('')
 
     useEffect(() => {
         fetchTypes().then(data => device.setTypes(data))
@@ -22,13 +23,12 @@ const DeleteType = ({show, onHide}) => {
                 setTypeName('')
                 fetchTypes().then(data => device.setTypes(data))
                 device.setSelectedType({})
-                alert ('Тип удалён')
                 onHide()
             } else {
-                alert("Невозможно провести операцию!")
+                setEr("Невозможно провести операцию!")
             }
         } catch (e) {
-            alert(e.message)
+            setEr(e.message)
         }
     }
     return (
@@ -62,7 +62,7 @@ const DeleteType = ({show, onHide}) => {
                             )}
                         </Dropdown.Menu>
                     </Dropdown>
-
+                    <h6 style={{color:"red"}} className='text-center'>{er}</h6>
                 </Form>
             </Modal.Body>
             <Modal.Footer>

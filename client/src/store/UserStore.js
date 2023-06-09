@@ -11,6 +11,8 @@ export default class UserStore {
         this._middleName = ''
         this._email = ''
         this._address = ''
+        this._cars = [];
+        this._selectedCar = {}
         makeAutoObservable(this)
     }
 
@@ -38,9 +40,14 @@ export default class UserStore {
     setEmail(email) {
         this._email = email
     }
-
     setAddress(address) {
         this._address = address
+    }
+    setCars(cars) {
+        this._cars = cars
+    }
+    setSelectedCar(car) {
+        this._selectedCar = car
     }
 
     get isAuth() {
@@ -55,7 +62,6 @@ export default class UserStore {
     get id() {
         return this._id
     }
-
     get firstName() {
        return this._firstName
     }
@@ -70,5 +76,11 @@ export default class UserStore {
     }
     get address() {
         return this._address
+    }
+    get cars() {
+        return this._cars
+    }
+    get selectedCar() {
+        return this._selectedCar
     }
 }

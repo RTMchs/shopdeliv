@@ -1,6 +1,6 @@
 const uuid = require('uuid')
 const path = require('path');
-const {Device, DeviceInfo, Brand} = require('../models/models')
+const {Device, DeviceInfo} = require('../models/models')
 const ApiError = require('../error/ApiError');
 
 class DeviceController {
@@ -9,45 +9,37 @@ class DeviceController {
             let {name, price, brandId, typeId, info} = req.body
             const {img} = req.files
             let fileName = uuid.v4() + ".jpg"
-            img.mv(path.resolve(__dirname, '..', 'static', fileName))
+            await img.mv(path.resolve(__dirname, '..', 'static', fileName))
             const device = await Device.create({name, price, brandId, typeId, img: fileName});
-
             if (info) {
                 info = JSON.parse(info)
                 info.forEach(i =>
-                    DeviceInfo.create({
-                        title: i.title,
+                    DeviceInfo.create({title: i.title,
                         description: i.description,
                         deviceId: device.id
                     })
                 )
             }
-
             return res.json(device)
         } catch (e) {
             next(ApiError.badRequest(e.message))
         }
-
     }
 
     async delete (req, res, next) {
         try {
             const {id} = req.params
-            const deviceInfo = await DeviceInfo.destroy({
+            await DeviceInfo.destroy({
                     where: {deviceId: id}
                 },
             )
-
             const device = await Device.destroy({
                     where: {id}
                 },
             )
-
             let msg;
-
             if (device === 1) { msg = {message:'success'}}
             else { msg = {message: 'failed'}}
-
             return res.json(msg)
         } catch (e){
             next(ApiError.badRequest(e.message))
@@ -62,8 +54,7 @@ class DeviceController {
         let offset = page * limit - limit
         let devices;
         if (!brandId && !typeId && !limit && !page) {
-            const devices = await Device.findAll()
-        }
+            devices = await Device.findAll()}
         if (!brandId && !typeId) {
             devices = await Device.findAndCountAll({limit, offset})
         }
@@ -77,9 +68,7 @@ class DeviceController {
             devices = await Device.findAndCountAll({where:{typeId, brandId}, limit, offset})
         }
         return res.json(devices)
-        } catch (e) {
-            next(ApiError.badRequest(e.message))
-        }
+        } catch (e) {next(ApiError.badRequest(e.message))}
     }
 
     async getOne(req, res, next) {

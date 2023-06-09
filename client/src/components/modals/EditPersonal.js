@@ -12,6 +12,7 @@ const EditPersonal = ({show, onHide}) => {
     const [m, setM] = useState('')
     const [email, setEmail] = useState('')
     const [address, setAddress] = useState('')
+    const [er, setEr] = useState('')
 
     const getCurrent = () => {
         setF(user.firstName)
@@ -31,10 +32,11 @@ const EditPersonal = ({show, onHide}) => {
 
     const editPersonal = async () => {
         if (f !== '' && l !== '' && m !== '' && email !== '' && address !== '') {
-           await changePersonal(user.id, f, l, m, email, address).then(data => onHide());
-           alert('Данные успешно изменены')
+            await changePersonal(user.id, f, l, m, email, address)
+            setEr('')
+            onHide()
         } else {
-            alert("Введите все данные")
+            setEr('Введите все данные')
         }
     }
 
@@ -75,9 +77,9 @@ const EditPersonal = ({show, onHide}) => {
                         placeholder={"Email"}
                         className='mb-3'
                     />
-                    <hr style={{borderColor:['#80526c']}} className='mt-2 p-0 mb-1'/>
-                    <h6 style={{color:['#80526c']}} className='m-0 p-0 font-weight-light'>В формате: ул д кв</h6>
-                    <h6 style={{color:['#80526c']}} className='mt-0 mb-1 p-0'>Пример: ул Кирова д 1 кв 1</h6>
+                    <hr style={{borderColor: ['#80526c']}} className='mt-2 p-0 mb-1'/>
+                    <h6 style={{color: ['#80526c']}} className='m-0 p-0 font-weight-light'>В формате: ул д кв</h6>
+                    <h6 style={{color: ['#80526c']}} className='mt-0 mb-1 p-0'>Пример: ул Кирова д 1 кв 1</h6>
                     <Form.Control
                         value={address}
                         onChange={e => setAddress(e.target.value)}
@@ -88,7 +90,7 @@ const EditPersonal = ({show, onHide}) => {
                         variant="info"
                         className='mb-2 w-100'
                         onClick={getCurrent}
-                        style={{background:['#00CCBB']}}
+                        style={{background: ['#00CCBB']}}
                     >
                         Показать текущие
                     </Button>
@@ -100,6 +102,7 @@ const EditPersonal = ({show, onHide}) => {
                     >
                         Очистить поля
                     </Button>
+                    <h5 className='text-center' style={{color:"red"}}>{er}</h5>
                 </Form>
             </Modal.Body>
             <Modal.Footer>

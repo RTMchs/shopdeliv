@@ -12,9 +12,13 @@ const BrandBar = observer(() => {
     }
 
     return (
-        <Row className="d-flex">
+        <Row className="d-flex px-2 overflow-auto" style={{height:85}}>
             <Card
-                style={{cursor: 'pointer', borderColor: allListener ? ['#00CCBB'] : ['#c9c9c9']}}
+                style={{
+                    maxHeight:35,
+                    cursor: 'pointer',
+                    borderColor: allListener ? ['#00CCBB'] : ['#c9c9c9']
+            }}
                 key={999998}
                 className="py-1 px-1 m-1 text-center"
                 onClick={() => {
@@ -27,6 +31,8 @@ const BrandBar = observer(() => {
             {device.brands.map(brand =>
                 <Card
                     style={{
+                        minWidth:100,
+                        maxHeight:35,
                         cursor: 'pointer',
                         borderColor: brand.id === device.selectedBrand.id ? ['#00CCBB'] : ['#c9c9c9']
                     }}

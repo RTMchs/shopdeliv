@@ -23,6 +23,7 @@ const DeleteDevice = ({show, onHide}) => {
     const {device} = useContext(Context)
     const [id, setId] = useState(0)
     const [deviceName, setDeviceName] = useState('')
+    const [er, setEr] = useState('')
 
     useEffect(() => {
         fetchAll(device)
@@ -31,7 +32,6 @@ const DeleteDevice = ({show, onHide}) => {
     fetchAll(device)
 
     const deleteSelectedDevice = async () => {
-
         try {
             if (id !== 0 && deviceName !== '') {
                 await deleteFromAllBaskets(id)
@@ -42,15 +42,14 @@ const DeleteDevice = ({show, onHide}) => {
                 fetchAll(device)
                 device.setSelectedBrand({})
                 device.setSelectedType({})
-
-                alert ('Товар удалён')
+                setEr('')
                 onHide()
 
             } else {
-                alert("Невозможно провести операцию!")
+                setEr("Невозможно провести операцию!")
             }
         } catch (e) {
-            alert(e.message)
+            setEr(e.message)
         }
     }
     return (
@@ -83,7 +82,7 @@ const DeleteDevice = ({show, onHide}) => {
                             )}
                         </Dropdown.Menu>
                     </Dropdown>
-
+                    <h5 style={{color:"red"}} className='text-center'>{er}</h5>
                 </Form>
             </Modal.Body>
             <Modal.Footer>

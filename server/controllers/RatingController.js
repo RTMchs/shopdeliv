@@ -6,17 +6,23 @@ class RatingController {
     async getAll(req, res, next) {
         try {
             const {id} = req.params
-            const {userId} = req.query
-            if (userId) {
-                const rating = await Rating.findOne({
-                    where: {deviceId: id, userId: userId}
-                })
-                return res.json(rating)
-            }
             const ratings = await Rating.findAll({
                 where: {deviceId: id}
             })
             return res.json(ratings)
+        } catch (e) {
+            next(ApiError.badRequest(e.message))
+        }
+    }
+
+    async getUserRates(req, res, next) {
+        try {
+            const {id} = req.params
+            const {userId} = req.query
+            const rating = await Rating.findOne({
+                where: {deviceId: id, userId: userId}
+            })
+            return res.json(rating)
         } catch (e) {
             next(ApiError.badRequest(e.message))
         }
@@ -29,7 +35,7 @@ class RatingController {
             const check = await Rating.findOne({
                 where: {userId: user.id, deviceId: deviceId}
             })
-            if (check){
+            if (check) {
                 return res.json({message: 'Вы уже оставили отзыв об этом товаре'})
             } else {
                 const rating = await Rating.create({
@@ -46,7 +52,7 @@ class RatingController {
                     let sum = 0
                     dev.map(d => sum += d.rate)
                     const avg = (sum / ratings.count).toFixed(1)
-                    const device = Device.update({rating: avg},
+                    await Device.update({rating: avg},
                         {
                             where: {id: deviceId}
                         }

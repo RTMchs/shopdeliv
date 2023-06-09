@@ -10,13 +10,13 @@ const OrderItem = ({order}) => {
     const [isHover, setIsHover] = useState(false)
     let stat
     if (order.status === 'PREPARING') {
-        stat = 'ПОДГОТАВЛИВАЕТСЯ'
+        stat = 'Подготавливается'
     }
     if (order.status === 'DELIVERING') {
-        stat = 'В ПУТИ'
+        stat = 'В пути'
     }
     if (order.status === 'ENDED') {
-        stat = 'ЗАВЕРШЕН'
+        stat = 'Завершён'
     }
 
     return (
@@ -27,23 +27,23 @@ const OrderItem = ({order}) => {
             onMouseLeave={() => setIsHover(false)}
             style={{cursor:'pointer', borderColor: isHover ? ['#00CCBB'] : ['#c9c9c9']}}
         >
-            <div className='w-100 d-flex '>
+            <div className='w-100 d-flex text-break'>
                 <h6 className="pl-1">Статус:</h6>
-                <h6 style={{color: ['#80526c']}} className="pl-1">{stat}</h6>
+                <h6 style={{color: ['#80526c']}} className="pl-1 ">{stat}</h6>
             </div>
-            <div className='w-100 d-flex '>
+            <div className='w-100 d-flex text-break'>
                 <h6 className="pl-1">Получатель:</h6>
-                <h6 style={{color: ['#80526c']}} className="pl-1">{order.last_name} {order.first_name} {order.middle_name}</h6>
+                <h6 style={{color: ['#80526c']}} className="pl-1 ">{order.last_name} {order.first_name} {order.middle_name}</h6>
             </div>
 
-            <div className='w-100 d-flex'>
+            <div className='w-100 d-flex text-break'>
                 <h6 className="pl-1">Дата:</h6>
-                <h6 style={{color: ['#80526c']}} className="pl-1"> {string} </h6>
+                <h6 style={{color: ['#80526c']}} className="pl-1 "> {string} </h6>
             </div>
 
-            <div className='w-100 d-flex'>
+            <div className='w-100 d-flex text-break'>
                 <h6 className="pl-1">Адрес:</h6>
-                <h6 style={{color: ['#80526c']}} className="pl-1"> {order.address} </h6>
+                <h6 style={{color: ['#80526c']}} className="pl-1 "> {order.address} </h6>
             </div>
 
         </Card>

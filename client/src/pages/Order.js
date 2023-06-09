@@ -12,6 +12,9 @@ const Order = () => {
     const {user} = useContext(Context)
     const {device} = useContext(Context)
     const [goBackVisible, setGoBackVisible] = useState(false)
+    const [er, setEr] = useState('')
+    const [erUser, setErUser] = useState('')
+
     const navigate = useNavigate()
 
     useEffect(() => {
@@ -38,7 +41,7 @@ const Order = () => {
     const [f, setF] = useState('')
     const [l, setL] = useState('')
     const [m, setM] = useState('')
-    const [isActive, setIsActive] = useState(true)
+    const [isDisabled, setIsDisabled] = useState(true)
     const [addressRes, setAddressRes] = useState('')
     const [address, setAddress] = useState('')
 
@@ -69,7 +72,14 @@ const Order = () => {
             },
             body: JSON.stringify({query: formatAddress})
         }
-        if (formatAddress !== 'г Киров ') {
+
+        if (!f && !l && !m) {
+            setErUser('Введите данные получателя')
+        } else {
+            setErUser('')
+        }
+
+        if (formatAddress !== 'г Киров ' && f && l && m) {
             fetch('https://suggestions.dadata.ru/suggestions/api/4_1/rs/suggest/address', options)
                 .then(response => response.json())
                 .then(result => {
@@ -77,16 +87,17 @@ const Order = () => {
                     const isStreet = result.suggestions[0].data.street
                     const isFlat = result.suggestions[0].data.flat
                     if (isHouse && isStreet && isFlat) {
-                        setIsActive(false)
+                        setEr('')
+                        setIsDisabled(false)
                         setAddressRes(result.suggestions[0].value)
                     } else {
-                        alert('Похоже, что вы ввели данные некорректно')
-                        setIsActive(true)
+                        setEr('Похоже, что вы ввели данные некорректно')
+                        setIsDisabled(true)
                     }
                 })
                 .catch(error => {
-                    alert("Похоже, что вы ввели данные некорректно")
-                    setIsActive(true)
+                    setEr("Похоже, что вы ввели данные некорректно")
+                    setIsDisabled(true)
                 });
         }
     }
@@ -114,7 +125,7 @@ const Order = () => {
                             placeholder={"Отчество"}
                             className='mb-2'
                         />
-
+                        <h5 style={{color:"red"}} className='text-center'>{erUser}</h5>
                         <Button
                             variant="outline-info"
                             className='mb-2 w-100'
@@ -159,8 +170,10 @@ const Order = () => {
                             Найти
                         </Button>
                         <h5 style={{color: ['#80526c']}} className='mt-0 mb-1 p-0'>{addressRes}</h5>
+                        <h5 style={{color:"red"}} className='text-center'>{er}</h5>
+
                         <Button
-                            disabled={isActive}
+                            disabled={isDisabled}
                             variant='success'
                             className='mb-2 w-100'
                             onClick={formAnOrder}
@@ -169,7 +182,7 @@ const Order = () => {
                         </Button>
                     </Form>
                 </div>
-                <GoBack show={goBackVisible} onHide={() => setGoBackVisible(false)}/>
+                <GoBack show={goBackVisible} onHide={() => setGoBackVisible(false)} message='Ваш заказ принят!'/>
             </Container>
         );
     } else {

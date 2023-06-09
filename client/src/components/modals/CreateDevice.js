@@ -12,6 +12,7 @@ const CreateDevice = observer(({show, onHide}) => {
     const [price, setPrice] = useState(0)
     const [file, setFile] = useState(null)
     const [info, setInfo] = useState([])
+    const [err, setErr] = useState('')
 
     useEffect(() => {
         fetchTypes().then(data => device.setTypes(data))
@@ -41,7 +42,7 @@ const CreateDevice = observer(({show, onHide}) => {
             }
         })
         if (price === 0 || info.length === 0 || !er) {
-            alert('Введите все данные')
+            setErr('Введите все данные')
         } else {
             try {
                 formData.append('name', name)
@@ -50,13 +51,13 @@ const CreateDevice = observer(({show, onHide}) => {
                 formData.append('brandId', device.selectedBrand.id)
                 formData.append('typeId', device.selectedType.id)
                 formData.append('info', JSON.stringify(info))
-                alert ('Товар Добавлен')
                 device.setSelectedBrand({})
                 device.setSelectedType({})
+                setErr('')
                 createDevice(formData).then(data => onHide())
                 fetchAll(device)
             } catch (e) {
-                alert(e);
+                setErr(e);
             }
         }
     }
@@ -151,6 +152,7 @@ const CreateDevice = observer(({show, onHide}) => {
                             </Col>
                         </Row>
                     )}
+                    <h5 style={{color:"red"}} className='text-center'>{err}</h5>
                 </Form>
             </Modal.Body>
             <Modal.Footer>

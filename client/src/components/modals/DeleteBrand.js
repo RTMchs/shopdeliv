@@ -8,6 +8,7 @@ const DeleteBrand = ({show, onHide}) => {
     const {device} = useContext(Context)
     const [id, setId] = useState(0)
     const [brandName, setBrandName] = useState('')
+    const [er, setEr] = useState('')
 
     useEffect(() => {
         fetchBrands().then(data => device.setBrands(data))
@@ -21,13 +22,13 @@ const DeleteBrand = ({show, onHide}) => {
                 setBrandName('')
                 fetchBrands().then(data => device.setBrands(data))
                 device.setSelectedBrand({})
-                alert ('Брэнд удалён')
+                setEr('')
                 onHide()
             } else {
-                alert("Невозможно провести операцию!")
+                setEr("Невозможно провести операцию!")
             }
         } catch (e) {
-            alert(e.message)
+            setEr(e.message)
         }
     }
     return (
@@ -61,7 +62,7 @@ const DeleteBrand = ({show, onHide}) => {
                             )}
                         </Dropdown.Menu>
                     </Dropdown>
-
+                    <h6 style={{color:"red"}} className='text-center'>{er}</h6>
                 </Form>
             </Modal.Body>
             <Modal.Footer>

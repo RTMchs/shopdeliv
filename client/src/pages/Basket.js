@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import {useContext} from 'react';
 import {Context} from '..';
-import {getBasket, getBasketDevices} from '../http/deviceAPI';
+import {getBasket} from '../http/deviceAPI';
 import {Button, Container} from 'react-bootstrap'
 import {observer} from 'mobx-react-lite';
 import BasketProduct from "../components/basketProduct";
@@ -17,12 +17,7 @@ const Basket = observer(() => {
     const navigate = useNavigate();
 
     const {device} = useContext(Context)
-    const {user} = useContext(Context)
     let price = 0;
-
-    const click = async() => {
-
-    }
 
     useEffect(() => {
         getBasket().then(data => device.setBaskets(data))

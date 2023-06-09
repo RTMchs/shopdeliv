@@ -12,9 +12,9 @@ const TypeBar = observer(() => {
     }
 
     return (
-        <ListGroup>
+        <ListGroup className='overflow-auto' style={{height:210}}>
             <ListGroup.Item
-                style={{cursor: 'pointer', background: allListener ? ['#00CCBB'] : ['#ffffff']}}
+                style={{cursor: 'pointer', background: allListener ? 'lightgray': ['#ffffff']}}
                 className='rounded py-1'
                 onClick={() => {
                     device.setSelectedType({})
@@ -29,7 +29,7 @@ const TypeBar = observer(() => {
                 <ListGroup.Item
                     style={{
                         cursor: 'pointer',
-                        background: type.id === device.selectedType.id ? ['#00CCBB'] : ['#ffffff']
+                        background: type.id === device.selectedType.id ? 'lightgray' : ['#ffffff']
                     }}
                     className='rounded py-1'
                     onClick={() => {

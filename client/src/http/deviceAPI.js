@@ -99,7 +99,7 @@ export const clearUserBasket = async (userId) => {
 }
 
 export const deleteFromAllBaskets = async (id) => {
-    const {response} = await $authHost.delete('api/delbasket/' + id)
+    const {response} = await $authHost.delete('api/basket/delete/' + id)
     return response
 }
 
@@ -108,15 +108,26 @@ export const getBasket = async () => {
     return data
 }
 
-export const getBasketDevices = async (basketId) => {
-    const {data} = await $authHost.get('api/delbasket', {params: {basketId: basketId}})
-    return data
-}
 //------------------------------КОРЗИНА------------------------------//
 
 //------------------------------ЗАКАЗЫ------------------------------//
 export const getOrders = async () => {
     const {data} = await $authHost.get('api/order')
+    return data
+}
+
+export const getPreparingOrders = async () => {
+    const {data} = await $authHost.get('api/order/preparing')
+    return data
+}
+
+export const getDeliveringOrders = async () => {
+    const {data} = await $authHost.get('api/order/delivering')
+    return data
+}
+
+export const getEndedOrders = async () => {
+    const {data} = await $authHost.get('api/order/ended')
     return data
 }
 
@@ -153,17 +164,28 @@ export const getOrderedDevices = async(id) => {
     return data
 }
 
-export const patchAddress = async (userId, address) => {
-    const {data} = await $authHost.patch('api/order',
-        {userId: userId, address: address})
-    return data
-}
 
 export const deleteFromOrder = async (id) => {
     const {response} = await $authHost.delete('api/order/' + id)
     return response
 }
 //------------------------------ЗАКАЗЫ------------------------------//
+
+//------------------------------ЗАКАЗЫ КУРЬЕР------------------------------//
+export const fetchAvOrders = async () => {
+    const {data} = await $authHost.get('api/courierorder/')
+    return data
+}
+export const fetchCurOrders = async () => {
+    const {data} = await $authHost.get('api/courierorder/current')
+    return data
+}
+export const patchOrder = async (id, status, carId) => {
+    const {response} = await $authHost.patch('api/courierorder/' + id,
+        {status: status, carId:carId})
+    return response
+}
+//------------------------------ЗАКАЗЫ КУРЬЕР------------------------------//
 
 //------------------------------ОТЗЫВЫ------------------------------//
 export const createRate = async (rate, description, deviceId) => {
@@ -172,8 +194,12 @@ export const createRate = async (rate, description, deviceId) => {
     return response
 }
 
-export const getAllRates = async (id, userId) => {
-    const {data} = await $host.get('api/rating/' + id, {params:{userId : userId}})
+export const getAllRates = async (id) => {
+    const {data} = await $host.get('api/rating/' + id)
     return data
 }
-//------------------------------ЗАКАЗЫ------------------------------//
+export const getUserRates = async (id, userId) => {
+    const {data} = await $host.get('api/rating/user/' + id, {params:{userId : userId}})
+    return data
+}
+//------------------------------ОТЗЫВЫ------------------------------//

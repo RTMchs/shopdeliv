@@ -19,6 +19,48 @@ class OrderController {
         }
     }
 
+    async getOrdersPreparing(req, res, next) {
+        try {
+            const order = await Order.findAll({
+                where: {status: 'PREPARING'},
+                order: [
+                    ['id', 'DESC']
+                ]
+            })
+            console.log(order)
+            return res.json(order)
+        } catch (e) {
+            next(ApiError.badRequest(e.message))
+        }
+    }
+
+    async getOrdersDelivering(req, res, next) {
+        try {
+            const order = await Order.findAll({
+                where: {status: 'DELIVERING'},
+                order: [
+                    ['id', 'DESC']
+                ]
+            })
+            return res.json(order)
+        } catch (e) {
+            next(ApiError.badRequest(e.message))
+        }
+    }
+
+    async getOrdersEnded(req, res, next) {
+        try {
+            const order = await Order.findAll({
+                where: {status: 'ENDED'},
+                order: [
+                    ['id', 'DESC']
+                ]
+            })
+            return res.json(order)
+        } catch (e) {
+            next(ApiError.badRequest(e.message))
+        }
+    }
 
     async getOrdersUser(req, res, next) {
         try {
