@@ -47,32 +47,37 @@ export const courierRoute = [
     }
 ]
 
-export const authRoute = [
-    {
-        path: BASKET_ROUTE,
-        Component: Basket
-    },
-    {
-        path: ORDER_ROUTE,
-        Component: Order
-    },
+export const accountRoute = [
     {
         path: ACCOUNT_ROUTE,
         Component: Account
+    }
+]
+
+export const authRoute = [
+    {
+        path: ORDER_ROUTE,
+        Component: Order
     },
     {
         path: ORDER_ITEM_ROUTE + '/:id',
         Component: OrderPage
     }
 ]
-export const publicRoutes = [
+export const clientRoute = [
     {
-        path: SHOP_ROUTE,
-        Component: Shop
-    },
+        path: BASKET_ROUTE,
+        Component: Basket
+    }
+]
+export const publicRoutes = [
     {
         path: LOGIN_ROUTE,
         Component: Auth
+    },
+    {
+        path: SHOP_ROUTE,
+        Component: Shop
     },
     {
         path: REGISTRATION_ROUTE,

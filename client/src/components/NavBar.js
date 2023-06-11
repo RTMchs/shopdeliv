@@ -8,6 +8,7 @@ import {Button} from "react-bootstrap";
 import {observer} from "mobx-react-lite";
 import Container from "react-bootstrap/Container";
 import {useNavigate} from 'react-router-dom'
+
 const NavBar = observer(() => {
     const {user} = useContext(Context)
     const navigation = useNavigate();
@@ -27,9 +28,10 @@ const NavBar = observer(() => {
     if (user.isAuth) {
         return (
             <Navbar bg="dark" variant="dark">
-                <Container>
-                    <NavLink style={{color:'white'}} to={SHOP_ROUTE}>Exem Delivery</NavLink>
-                    {user.role === 'ADMIN' ?
+                {user.role === 'ADMIN' ?
+                    <Container>
+                        <NavLink style={{color: 'white'}} to={ADMIN_ROUTE}>Exem Delivery</NavLink>
+
                         <Nav className="ml-auto" style={{color: 'white'}}>
                             <Button
                                 variant={"outline-light"}
@@ -52,31 +54,52 @@ const NavBar = observer(() => {
                                 Выйти
                             </Button>
                         </Nav>
-                        :
-                        <Nav className="ml-auto" style={{color: 'white'}}>
-                            <Button
-                                variant={"outline-light"}
-                                onClick={() => navigation(ACCOUNT_ROUTE)}
-                            >
-                                Личный Кабинет
-                            </Button>
-                            <Button
-                                variant={"outline-light"}
-                                onClick={() => navigation(BASKET_ROUTE)}
-                                className="ml-2"
-                            >
-                                Корзина
-                            </Button>
-                            <Button
-                                variant={"outline-light"}
-                                onClick={() => logOut()}
-                                className="ml-2"
-                            >
-                                Выйти
-                            </Button>
-                        </Nav>
-                    }
-                </Container>
+                    </Container>
+                    : user.role === 'COURIER' ?
+                        <Container>
+                            <NavLink style={{color: 'white'}} to={ACCOUNT_ROUTE}>Exem Delivery</NavLink>
+                            <Nav className="ml-auto" style={{color: 'white'}}>
+                                <Button
+                                    variant={"outline-light"}
+                                    onClick={() => navigation(ACCOUNT_ROUTE)}
+                                >
+                                    Личный Кабинет
+                                </Button>
+                                <Button
+                                    variant={"outline-light"}
+                                    onClick={() => logOut()}
+                                    className="ml-2"
+                                >
+                                    Выйти
+                                </Button>
+                            </Nav>
+                        </Container> :
+                        <Container>
+                            <NavLink style={{color: 'white'}} to={SHOP_ROUTE}>Exem Delivery</NavLink>
+                            <Nav className="ml-auto" style={{color: 'white'}}>
+                                <Button
+                                    variant={"outline-light"}
+                                    onClick={() => navigation(ACCOUNT_ROUTE)}
+                                >
+                                    Личный Кабинет
+                                </Button>
+                                <Button
+                                    variant={"outline-light"}
+                                    onClick={() => navigation(BASKET_ROUTE)}
+                                    className="ml-2"
+                                >
+                                    Корзина
+                                </Button>
+                                <Button
+                                    variant={"outline-light"}
+                                    onClick={() => logOut()}
+                                    className="ml-2"
+                                >
+                                    Выйти
+                                </Button>
+                            </Nav>
+                        </Container>
+                }
             </Navbar>
 
         );
@@ -84,10 +107,10 @@ const NavBar = observer(() => {
         return (
             <Navbar bg="dark" variant="dark">
                 <Container>
-                    <NavLink style={{color:'white'}} to={SHOP_ROUTE}>Exem Delivery</NavLink>
-                        <Nav className="ml-auto" style={{color: 'white'}}>
-                            <Button variant={"outline-light"} onClick={() => navigation(LOGIN_ROUTE)}>Авторизация</Button>
-                        </Nav>
+                    <NavLink style={{color: 'white'}} to={SHOP_ROUTE}>Exem Delivery</NavLink>
+                    <Nav className="ml-auto" style={{color: 'white'}}>
+                        <Button variant={"outline-light"} onClick={() => navigation(LOGIN_ROUTE)}>Авторизация</Button>
+                    </Nav>
                     }
                 </Container>
             </Navbar>

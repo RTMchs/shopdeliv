@@ -105,7 +105,7 @@ const CourierPage = observer(() => {
                                 <div className='d-flex mx-auto'>
                                     <Dropdown className="text-center mx-2"
                                               style={{minWidth: 300}}>
-                                        { device.selectedOrder.carId === '' ?
+                                        { !device.selectedOrder.carId ?
                                             <Dropdown.Toggle variant='outline-info' style={{
                                             width: 300,
                                             height: 40

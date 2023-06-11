@@ -1,7 +1,7 @@
 import React, {useContext} from 'react';
 import {Routes, Route, Navigate} from 'react-router-dom'
-import {authRoute, publicRoutes, adminRoute, courierRoute} from "../routes";
-import {SHOP_ROUTE} from "../utils/consts";
+import {authRoute, publicRoutes, adminRoute, courierRoute, clientRoute, accountRoute} from "../routes";
+import {ACCOUNT_ROUTE, ADMIN_ROUTE, SHOP_ROUTE} from "../utils/consts";
 import {Context} from "../index";
 import {observer} from "mobx-react-lite";
 
@@ -19,10 +19,21 @@ const AppRouter = observer(() => {
             {user.isAuth && authRoute.map(({path, Component}) =>
                 <Route key={path} path={path} element={<Component/>} exact/>
             )}
-            {publicRoutes.map(({path, Component}) =>
+            {user.isAuth && user.role !== 'ADMIN' && accountRoute.map(({path, Component}) =>
                 <Route key={path} path={path} element={<Component/>} exact/>
             )}
-            <Route path='*' element={<Navigate to={SHOP_ROUTE}/>} />
+            {user.role === 'USER' && clientRoute.map(({path, Component}) =>
+                <Route key={path} path={path} element={<Component/>} exact/>
+            )}
+            {user.role !== 'ADMIN' && user.role !== 'COURIER' && publicRoutes.map(({path, Component}) =>
+                <Route key={path} path={path} element={<Component/>} exact/>
+            )}
+            { user.role === 'COURIER' ?
+                <Route path='*' element={<Navigate to={ACCOUNT_ROUTE}/>}/> :
+                user.role === 'ADMIN' ?
+                    <Route path='*' element={<Navigate to={ADMIN_ROUTE}/>}/> :
+                    <Route path='*' element={<Navigate to={SHOP_ROUTE}/>}/>
+            }
         </Routes>
     );
 });

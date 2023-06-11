@@ -5,6 +5,7 @@ const OrderController = require('../controllers/OrderController')
 const authMiddleware = require('../middleware/authMiddleware')
 
 router.get('/', authMiddleware, OrderController.getOrdersUser)
+router.get('/last', authMiddleware, OrderController.getLastOrder)
 router.get('/preparing', authMiddleware, OrderController.getOrdersPreparing)
 router.get('/delivering', authMiddleware, OrderController.getOrdersDelivering)
 router.get('/ended', authMiddleware, OrderController.getOrdersEnded)

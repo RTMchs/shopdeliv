@@ -33,6 +33,18 @@ class OrderController {
             next(ApiError.badRequest(e.message))
         }
     }
+    async getLastOrder(req, res, next) {
+        try {
+        const order = await Order.findOne({
+            order: [
+                ['id', 'DESC']
+            ]
+        })
+            return res.json(order);
+        } catch (e) {
+            next(ApiError.badRequest(e.message))
+        }
+    }
 
     async getOrdersDelivering(req, res, next) {
         try {

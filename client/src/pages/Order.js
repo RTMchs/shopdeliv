@@ -17,6 +17,11 @@ const Order = () => {
 
     const navigate = useNavigate()
 
+    const socket = new WebSocket('ws://localhost:5000/')
+    socket.onopen = () => {
+
+    }
+
     useEffect(() => {
         getBasket().then(data => device.setBaskets(data))
     }, [device])
@@ -27,6 +32,7 @@ const Order = () => {
         await clearUserBasket(user.id)
         setGoBackVisible(true)
         await getOrders().then(data => device.setOrders(data))
+        socket.send('Отправлен')
     }
 
     useEffect(() => {

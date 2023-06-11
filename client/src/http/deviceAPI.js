@@ -172,6 +172,10 @@ export const deleteFromOrder = async (id) => {
 //------------------------------ЗАКАЗЫ------------------------------//
 
 //------------------------------ЗАКАЗЫ КУРЬЕР------------------------------//
+export const fetchLastOrder = async () => {
+    const {data} = await $authHost.get('api/order/last/')
+    return data
+}
 export const fetchAvOrders = async () => {
     const {data} = await $authHost.get('api/courierorder/')
     return data

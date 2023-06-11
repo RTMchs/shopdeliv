@@ -6,9 +6,10 @@ import {fetchPersonal} from "../http/userAPI";
 import {Context} from "../index";
 import EditPersonal from "../components/modals/EditPersonal";
 import Orders from "../components/Orders";
-import {getOrders} from "../http/deviceAPI";
+import {fetchLastOrder, getOrders} from "../http/deviceAPI";
 import CourierOrders from "../components/CourierOrders";
 import CurrentOrders from "../components/CurrentOrders";
+import NewOrder from "../components/modals/NewOrder";
 
 const Account = observer(() => {
     const {user} = useContext(Context)
@@ -32,8 +33,19 @@ const Account = observer(() => {
         })
     }, [user])
 
-
+    const [newOrderVisible, setNewOrderVisible] = useState(false);
     const [editVisible, setEditVisible] = useState(false)
+    if(user.role === 'COURIER') {
+        const socket = new WebSocket('ws://localhost:5000/')
+        socket.onopen = () => {
+        }
+        socket.onmessage = (event) => {
+            console.log(event.data)
+            fetchLastOrder().then(data => device.setSelectedOrder(data))
+
+            setNewOrderVisible(true)
+        }
+    }
 
     if (user)
         return (
@@ -74,17 +86,17 @@ const Account = observer(() => {
                     {user.role === 'USER'
                         ?
                         <Card className='px-3 mx-auto mt-3 col-12 col-md-8 col-lg-8 overflow-auto'
-                        style={{maxHeight:350}}>
+                        style={{maxHeight:550}}>
                             <h5 className='text-center'>История заказов:</h5>
                             <Orders/>
                         </Card>
                         :
-                        <div className='justify-content-between align-items-center mt-1 w-100 row mx-auto'>
-                            <Card className='px-3 mx-auto mt-3 col-12 col-md-8 col-lg-8'>
+                        <div className='justify-content-between align-items-center mt-1 w-100 row mx-auto '>
+                            <Card className='px-3 mx-auto mt-3 col-12 col-md-8 col-lg-8 overflow-auto' style={{maxHeight:550}}>
                                 <h5 className='text-center'>Доступные заказы</h5>
                                 <CourierOrders/>
                             </Card>
-                            <Card className='px-3 mx-auto mt-3 col-12 col-md-8 col-lg-8'>
+                            <Card className='px-3 mx-auto mt-3 col-12 col-md-8 col-lg-8 overflow-auto' style={{maxHeight:550}}>
                                 <h5 className='text-center'>В процессе</h5>
                                 <CurrentOrders/>
                             </Card>
@@ -93,9 +105,10 @@ const Account = observer(() => {
                     }
                 </Container>
                 <EditPersonal show={editVisible} onHide={() => setEditVisible(false)}/>
+                <NewOrder show={newOrderVisible} onHide={() => setNewOrderVisible(false)}/>
             </div>
         );
-    else return <Spinner animation={"grow"}/>;
+    else return <Spinner className='min-vh-100' animation={"grow"}/>;
 });
 
 export default Account;
