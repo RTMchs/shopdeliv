@@ -11,7 +11,6 @@ router.get('/delivering', authMiddleware, OrderController.getOrdersDelivering)
 router.get('/ended', authMiddleware, OrderController.getOrdersEnded)
 router.get('/:id', authMiddleware, OrderController.getOrderDevices)
 router.post('/', authMiddleware,  OrderController.createOrder)
-// router.patch('/', authMiddleware, OrderController.setAddress)
 
 router.delete('/:id', OrderController.deleteOrder)
 

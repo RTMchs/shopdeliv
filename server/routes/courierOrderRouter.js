@@ -9,4 +9,3 @@ router.patch('/:id', authMiddleware, courierOrderController.patchOrder)
 
 
 module.exports = router
-

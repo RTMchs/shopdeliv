@@ -8,6 +8,4 @@ router.post('/', authMiddleware, OrderDevicesController.addToOrder)
 router.get('/', authMiddleware, OrderDevicesController.findOneOrder)
 router.get('/:id', authMiddleware, OrderDevicesController.findOrderById)
 
-
-
 module.exports = router
