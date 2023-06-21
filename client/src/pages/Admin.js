@@ -24,7 +24,7 @@ const Admin = () => {
                 className="mt-4 p-2"
                 onClick={() => setTypeVisible(true)}
             >
-                Добавить тип
+                Добавить категорию
             </Button>
 
             <Button
@@ -32,7 +32,7 @@ const Admin = () => {
                 className="mt-4 p-2"
                 onClick={() => setDelTypeVisible(true)}
             >
-                Удалить тип
+                Удалить категорию
             </Button>
 
             <Button

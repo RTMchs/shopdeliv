@@ -136,7 +136,7 @@ const DevicePage = () => {
                 </Container>
             );
         } else {
-            return <Spinner animation={"grow"} className='min-vh-100'/>
+            return <Spinner animation={"grow"} className='w-100 vh-100'/>
         }
     } else {
         return (

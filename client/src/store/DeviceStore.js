@@ -27,11 +27,11 @@ export default class DeviceStore {
     setSearchedDevices (searchedDevices) {
         this._searchedDevices = searchedDevices
     }
-    setBrandName(name) {
-        this._brandName = name
-    }
     setTypes(types) {
         this._types = types
+    }
+    setBrandName(name) {
+        this._brandName = name
     }
     setBrands(brands) {
         this._brands = brands

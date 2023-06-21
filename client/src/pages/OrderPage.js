@@ -22,7 +22,7 @@ const OrderPage = observer(() => {
         let formatDate = date.toLocaleString().toString()
         let status = '';
         if (device.selectedOrder.status === 'PREPARING') {
-            status = 'Подгатавливается'
+            status = 'Подготавливается'
         }
         if (device.selectedOrder.status === 'DELIVERING') {
             status = 'В пути'

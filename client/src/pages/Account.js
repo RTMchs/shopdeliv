@@ -108,7 +108,7 @@ const Account = observer(() => {
                 <NewOrder show={newOrderVisible} onHide={() => setNewOrderVisible(false)}/>
             </div>
         );
-    else return <Spinner className='min-vh-100' animation={"grow"}/>;
+    else return <Spinner className='w-100 vh-100' animation={"grow"}/>;
 });
 
 export default Account;

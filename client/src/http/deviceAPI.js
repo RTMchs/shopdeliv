@@ -164,7 +164,6 @@ export const getOrderedDevices = async(id) => {
     return data
 }
 
-
 export const deleteFromOrder = async (id) => {
     const {response} = await $authHost.delete('api/order/' + id)
     return response

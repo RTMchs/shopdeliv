@@ -28,7 +28,7 @@ const DeviceItem = ({device}) => {
                 <Image
                     width={120} height={120}
                     src={process.env.REACT_APP_API_URL + device.img}
-                    className='m-1 border border-dark rounded'/>
+                    className='m-1 rounded'/>
                 <div className="text-black-50 mt-1 d-flex justify-content-between align-items-center w-100 px-1">
                     <div>{brandName}</div>
                     <div className="d-flex align-items-center" style={{color: ['#80526c']}}>

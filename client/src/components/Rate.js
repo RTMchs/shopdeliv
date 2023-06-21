@@ -38,7 +38,7 @@ const Rate = ({rating}) => {
             </Card>
         );
     } else {
-        return <Spinner animation={"grow"}/>
+        return <Spinner animation={"grow"} className='w-100'/>
     }
 }
 

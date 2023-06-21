@@ -76,7 +76,7 @@ const OrderedDevice = ({orderedDevice, status, role}) => {
                 </Card>
             );
         } else {
-            return <Spinner animation={"grow"}/>
+            return <Spinner animation={"grow"} className='w-100'/>
         }
     } else {
         if (device) {
@@ -108,7 +108,7 @@ const OrderedDevice = ({orderedDevice, status, role}) => {
                 </Card>
             );
         } else {
-            return <Spinner animation={"grow"}/>
+            return <Spinner animation={"grow"} className='w-100'/>
         }
     }
 }

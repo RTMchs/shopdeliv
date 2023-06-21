@@ -18,13 +18,15 @@ const Auth = observer(() => {
     const [password, setPassword] = useState('')
     const [er, setEr] = useState('')
 
-    const click = async () => {
+    const click = async (role) => {
         try {
             let data;
             if (isLogin) {
                 data = await login(email, password);
             } else {
-                data = await registration(email, password);
+                if (role) {
+                    data = await registration(email, password, role);
+                }
             }
             setEr('')
             user.setUser(data)
@@ -60,33 +62,54 @@ const Auth = observer(() => {
                             type="password"
                         />
                         <h5 style={{color: "red"}} className='text-center'>{er}</h5>
-                        <Row className="d-flex justify-content-between mt-3 pl-3 pr-3">
+                        <Row className="d-flex justify-content-between mt-1 mb-1 pl-3 pr-3">
                             {isLogin ?
                                 <div>
-                                    Нет аккаунта? <NavLink to={REGISTRATION_ROUTE}>Зарегистрируйся!</NavLink>
+                                    Нет аккаунта? <NavLink to={REGISTRATION_ROUTE}>Зарегистрируйтесь.</NavLink>
                                 </div>
                                 :
                                 <div>
-                                    Есть аккаунт? <NavLink to={LOGIN_ROUTE}>Войдите!</NavLink>
+                                    Есть аккаунт? <NavLink to={LOGIN_ROUTE}>Войдите.</NavLink>
                                 </div>
                             }
-                            <Button
-                                variant={"outline-success"}
-                                onClick={click}
-                            >
-                                {isLogin ? 'Войти' : 'Регистрация'}
-                            </Button>
                         </Row>
+                        {isLogin ?
+                            <Button variant={"outline-success"} onClick={click}> Войти </Button>
+                            :
+                            <Row className="justify-content-between mt-1 mb-1 pl-3 pr-3">
+                                <Button
+                                    variant={"outline-success"}
+                                    onClick={() => {
+                                        click("COURIER")
+                                    }
+                                    }
+                                    className='w-100 mt-2'
+                                    style={{minWidth: 125}}
+                                >
+                                    Зарегистрироваться как Курьер
+                                </Button>
+                                <Button
+                                    variant={"outline-info"}
+                                    onClick={() => {
+                                        click("USER")
+                                    }
+                                    }
+                                    className='w-100 mt-2'
+                                    style={{minWidth: 125}}
+                                >
+                                    Зарегистрироваться как Покупатель
+                                </Button>
+                            </Row>
+                        }
 
                     </Form>
                 </Card>
             </Container>
         );
-    }
-    else {
+    } else {
         return (
             <div className='vh-100 align-middle d-flex'>
-                <h4 style={{ color: '#80526c'}} className='m-auto text-center'>
+                <h4 style={{color: '#80526c'}} className='m-auto text-center'>
                     Вы уже авторизованы
                 </h4>
             </div>

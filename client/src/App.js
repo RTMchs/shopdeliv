@@ -19,10 +19,10 @@ const App = observer( () => {
             user.setRole(data.role);
             user.setId(data.id);
         }).finally(() => setLoading(false))
-    })
+    },[])
 
     if (loading) {
-        return <Spinner animation={"grow"}/>
+        return <Spinner animation={"grow"} className='w-100 vh-100'/>
     }
 
   return (
