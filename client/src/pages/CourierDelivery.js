@@ -8,12 +8,13 @@ import GoBack from "../components/modals/GoBack";
 
 const CourierDelivery = () => {
     const {device} = useContext(Context)
+    const {user} = useContext(Context)
     const [lat, setLat] = useState(0)
     const [lon, setLon] = useState(0)
     const [goBackVisible, setGoBackVisible] = useState(false)
-
+    console.log(user.selectedCar)
     const patchStatus = async () => {
-        patchOrder(device.selectedOrder.id, 'ENDED', device.selectedOrder.carId).then(data => setGoBackVisible(true))
+       await patchOrder(device.selectedOrder.id, 'ENDED', user.selectedCar.id).then(data => setGoBackVisible(true))
     }
 
     const fetchCoords = () => {

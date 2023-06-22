@@ -37,20 +37,17 @@ class CourierOrderController {
                     where: {id: id}
                 })
             if (status === 'ENDED') {
-                const car = await Car.update(
+                await Car.update(
                     {status:'AVAILABLE'},
                     {
-                        where: {id:carId}
+                        where: {id: carId}
                     })
-                console.log(car)
             } else {
-                const car = await Car.update(
+                await Car.update(
                     {status: 'TAKEN'},
                     {
                         where: {id: carId}
                     })
-                console.log(car)
-
             }
             return res.json(order)
         } catch (e) {
