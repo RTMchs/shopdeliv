@@ -69,11 +69,6 @@ const OrderDevice = sequelize.define('order_device', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     amount: {type: DataTypes.INTEGER, allowNull: false, defaultValue: 1}
 })
-const Car = sequelize.define('car',{
-    id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
-    name:{type: DataTypes.STRING, allowNull: false},
-    status: {type: DataTypes.STRING, allowNull: false, defaultValue: 'AVAILABLE'}
-})
 
 User.hasMany(Order)
 Order.belongsTo(User)
@@ -111,8 +106,6 @@ DeviceInfo.belongsTo(Device)
 Type.belongsToMany(Brand, {through: TypeBrand })
 Brand.belongsToMany(Type, {through: TypeBrand })
 
-Car.hasOne(Order)
-Order.belongsTo(Car)
 
 module.exports = {
     User,
@@ -126,7 +119,6 @@ module.exports = {
     DeviceInfo,
     Order,
     OrderDevice,
-    Car
 }
 
 

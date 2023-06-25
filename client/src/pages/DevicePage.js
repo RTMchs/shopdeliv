@@ -35,23 +35,24 @@ const DevicePage = () => {
         if (oneDevice.name) {
             return (
                 <Container className="mt-3 min-vh-100">
-                    <h2 className='w-100 text-center'>{oneDevice.name}</h2>
-                    <Row className='justify-content-center'>
+
+                    <Row className='justify-content-center d-flex'>
                         <Col className='col-lg-4 col-md-6 col-sm-12 col-12'>
                             <div className="d-flex flex-column align-items-center my-2">
                                 <Image width={300} height={300}
                                        src={process.env.REACT_APP_API_URL + oneDevice.img}
                                        className='rounded'
-                                       style={{border: '2px solid black'}}
                                 />
                             </div>
                         </Col>
                         <Col className='col-lg-4 col-md-6 col-sm-12 col-12'>
                             <div className="d-flex flex-column align-items-center my-2">
-                                <Card
+
+                                <div
                                     className="d-flex flex-column align-items-center justify-content-around"
-                                    style={{width: 300, height: 300, fontSize: 32, border: '5px solid lightgray'}}
+                                    style={{width: 300, height: 300, fontSize: 32}}
                                 >
+                                    <h1 style={{color: ['#80526c']}} className='w-100 text-center'>{oneDevice.name}</h1>
                                     <div className='d-flex'>
                                         <h3>Цена:</h3>
                                         <h3 style={{color: ['#80526c']}} className='ml-2'>{oneDevice.price}₽</h3>
@@ -70,7 +71,7 @@ const DevicePage = () => {
                                         Добавить в корзину
                                     </Button>
                                     <h5 style={{color: "#80526c"}} className='text-center px-1'>{er}</h5>
-                                </Card>
+                                </div>
                             </div>
                         </Col>
                     </Row>

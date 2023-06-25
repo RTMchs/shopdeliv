@@ -183,9 +183,9 @@ export const fetchCurOrders = async () => {
     const {data} = await $authHost.get('api/courierorder/current')
     return data
 }
-export const patchOrder = async (id, status, carId) => {
+export const patchOrder = async (id, status) => {
     const {response} = await $authHost.patch('api/courierorder/' + id,
-        {status: status, carId:carId})
+        {status: status})
     return response
 }
 //------------------------------ЗАКАЗЫ КУРЬЕР------------------------------//

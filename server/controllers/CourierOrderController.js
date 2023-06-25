@@ -30,26 +30,18 @@ class CourierOrderController {
         try {
             const userId = req.user.id
             const {id} = req.params
-            const {status, carId} = req.body
+            const {status} = req.body
+            const tryorder = await Order.findOne({
+                    where:{id: id}
+                })
+            if (tryorder.courierId === userId || !tryorder.courierId) {
             const order = await Order.update(
-                {status: status, courierId: userId, carId: carId},
+                {status: status, courierId: userId},
                 {
                     where: {id: id}
                 })
-            if (status === 'ENDED') {
-                await Car.update(
-                    {status:'AVAILABLE'},
-                    {
-                        where: {id: carId}
-                    })
-            } else {
-                await Car.update(
-                    {status: 'TAKEN'},
-                    {
-                        where: {id: carId}
-                    })
+                return res.json(order)
             }
-            return res.json(order)
         } catch (e) {
             next(ApiError.badRequest(e.message))
         }

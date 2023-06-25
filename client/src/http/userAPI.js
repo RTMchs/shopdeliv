@@ -37,18 +37,4 @@ export const changePersonal = async (userId, fName, lName, mName, email, address
     return data
 }
 
-export const createCar = async (car) => {
-    const {data} = await $authHost.post('api/car', car)
-    return data
-}
-
-export const fetchCars = async () => {
-    const {data} = await $host.get('api/car',)
-    return data
-}
-
-export const getOneCar = async (id) => {
-    const {data} = await $host.get('api/car/' + id)
-    return data
-}
 

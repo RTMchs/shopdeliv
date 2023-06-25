@@ -25,6 +25,7 @@ const Order = () => {
     useEffect(() => {
         getBasket().then(data => device.setBaskets(data))
     }, [device])
+
     const formAnOrder = async () => {
         await createOrder(user.id, f, l, m, addressRes)
         await getOneOrder().then(res => device.setSelectedOrder(res))
@@ -110,7 +111,7 @@ const Order = () => {
     if (device.basket.length > 0) {
         return (
             <Container className='justify-content-center align-items-center min-vh-100'>
-                <div className='px-5 py-3 w-75 m-auto justify-content-center align-items-center'>
+                <div className='py-3 w-75 mx-auto mt-3 justify-content-center align-items-center'>
                     <h4 style={{color: ['#80526c']}}>Укажите ФИО получателя:</h4>
                     <Form>
                         <Form.Control

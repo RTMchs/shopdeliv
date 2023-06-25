@@ -9,7 +9,6 @@ const Orders = observer(() => {
 
     useEffect(() => {
         getOrders().then(data => device.setOrders(data))
-        console.log(device.orders)
     }, [device])
 
     if (device.orders.length > 0) {

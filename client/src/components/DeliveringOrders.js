@@ -23,7 +23,7 @@ const DeliveringOrders = observer(() => {
         );
     } else {
         return (
-            <div className='px-2 py-0'>
+            <div className='px-2 py-0 align-items-center text-center justify-content-between w-100'>
                 <h5 style={{color:'#80526c'}} className="p-5 text-center">
                     На данный момент нет заказов
                 </h5>

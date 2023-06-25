@@ -6,7 +6,6 @@ import CreateType from "../components/modals/CreateType";
 import DeleteBrand from "../components/modals/DeleteBrand";
 import DeleteType from "../components/modals/DeleteType";
 import DeleteDevice from "../components/modals/DeleteDevice";
-import CreateCar from "../components/modals/CreateCar";
 
 const Admin = () => {
     const [brandVisible, setBrandVisible] = useState(false)
@@ -15,7 +14,6 @@ const Admin = () => {
     const [delTypeVisible, setDelTypeVisible] = useState(false)
     const [deviceVisible, setDeviceVisible] = useState(false)
     const [delDeviceVisible, setDelDeviceVisible] = useState(false)
-    const [carAddVisible, setCarAddVisible] = useState(false)
 
     return (
         <Container className="d-flex flex-column min-vh-100">
@@ -67,21 +65,12 @@ const Admin = () => {
                 Удалить товар
             </Button>
 
-            <Button
-                variant={"info"}
-                className="mt-4 p-2"
-                onClick={() => setCarAddVisible(true)}
-            >
-                Добавить Автомобиль
-            </Button>
-
             <CreateBrand show={brandVisible} onHide={() => setBrandVisible(false)}/>
             <DeleteBrand show={delBrandVisible} onHide={ () => setDelBrandVisible(false)}/>
             <CreateDevice show={deviceVisible} onHide={() => setDeviceVisible(false)}/>
             <CreateType show={typeVisible} onHide={() => setTypeVisible(false)}/>
             <DeleteType show={delTypeVisible} onHide={() => setDelTypeVisible(false)}/>
             <DeleteDevice show={delDeviceVisible} onHide={() => setDelDeviceVisible(false)}/>
-            <CreateCar show={carAddVisible} onHide={() => setCarAddVisible(false)}/>
 
         </Container>
     );

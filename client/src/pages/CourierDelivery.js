@@ -8,13 +8,11 @@ import GoBack from "../components/modals/GoBack";
 
 const CourierDelivery = () => {
     const {device} = useContext(Context)
-    const {user} = useContext(Context)
     const [lat, setLat] = useState(0)
     const [lon, setLon] = useState(0)
     const [goBackVisible, setGoBackVisible] = useState(false)
-    console.log(user.selectedCar)
     const patchStatus = async () => {
-       await patchOrder(device.selectedOrder.id, 'ENDED', user.selectedCar.id).then(data => setGoBackVisible(true))
+       await patchOrder(device.selectedOrder.id, 'ENDED').then(data => setGoBackVisible(true))
     }
 
     const fetchCoords = () => {
@@ -50,7 +48,7 @@ const CourierDelivery = () => {
                     <h3 style={{color: ['#80526c']}} className='w-50 text-center mt-3 mx-auto'>
                         Заказ № {device.selectedOrder.id}
                     </h3>
-                    <div className=' w-100 mx-auto justify-content-center mt-5'>
+                    <div className=' w-100 mx-auto justify-content-center mt-3'>
                         <h5 className='text-center'>Получатель:</h5>
                         <h4 style={{color: ['#80526c']}} className='ml-2 text-center'
                         >

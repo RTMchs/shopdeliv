@@ -5,43 +5,36 @@ import {useNavigate, useParams} from "react-router-dom";
 import {getOrderById, getOrderedDevices, patchOrder} from "../http/deviceAPI";
 import {Context} from "../index";
 import OrderedDevice from "../components/OrderedDevice";
-import {Button, Card, Dropdown, Form} from "react-bootstrap";
-import {COURIER_DELIVERY_ROUTE} from "../utils/consts";
-import {fetchCars, getOneCar} from "../http/userAPI";
+import {Button, Card, Form} from "react-bootstrap";
+import {ACCOUNT_ROUTE, COURIER_DELIVERY_ROUTE} from "../utils/consts";
+import GoBack from "../components/modals/GoBack";
 
 const CourierPage = observer(() => {
     const {id} = useParams()
     const {device} = useContext(Context)
     const {user} = useContext(Context)
-    const [carName, setCarName] = useState('')
     const [err, setErr] = useState('')
-    const [currentCar, setCurrentCar] = useState({});
+    const [goBackVisible, setGoBackVisible] = useState(false)
     const navigate = useNavigate()
 
     const patchStatus = async () => {
         if (device.selectedOrder.status === 'PREPARING') {
-            if (user.selectedCar.id && carName !== '') {
-                patchOrder(device.selectedOrder.id, 'DELIVERING', user.selectedCar.id).then(data => navigate(COURIER_DELIVERY_ROUTE))
-            } else {
-                setErr('Выберите авто для принятия заказа!')
-            }
-        } else {
+            patchOrder(device.selectedOrder.id, 'DELIVERING').then(data => {
+                navigate(COURIER_DELIVERY_ROUTE)
+            })
+            getOrderById(device.selectedOrder.id).then(data => device.setSelectedOrder(data))
+        } else if (device.selectedOrder.courierId === user.id) {
             navigate(COURIER_DELIVERY_ROUTE)
+        } else {
+            setErr('Заказ уже занят')
+            setGoBackVisible(true)
         }
     }
 
     useEffect(() => {
         getOrderById(id).then(data => device.setSelectedOrder(data))
         getOrderedDevices(id).then(data => device.setOrderedDevices(data))
-        fetchCars().then(data => user.setCars(data))
-
     }, [device, user])
-
-    useEffect(() => {
-        if (device.selectedOrder.carId) {
-            getOneCar(device.selectedOrder.carId).then(data => setCurrentCar(data))
-        }
-    }, [device.selectedOrder])
 
     if (device.selectedOrder) {
         let date = new Date(device.selectedOrder.updatedAt)
@@ -77,13 +70,6 @@ const CourierPage = observer(() => {
                                     {formatDate}
                                 </h6>
                             </div>
-                            <div className='d-flex w-100 justify-content-center'>
-                                <h6 className='text-center'>Автомобиль:</h6>
-                                <h6 style={{color: ['#80526c']}} className='ml-2'
-                                >
-                                    {currentCar.name}
-                                </h6>
-                            </div>
                         </div>
                         <Card className='col-12 col-sm-11 col-md-10 col-lg-10 px-1 mx-auto mt-3'>
                             <h6 className='m-0'>Товары:</h6>
@@ -103,39 +89,9 @@ const CourierPage = observer(() => {
                         <div className='col-12 col-sm-11 col-md-10 col-lg-10 px-1 mx-auto mt-4 text-center'>
                             <Form className='w-100 d-flex'>
                                 <div className='d-flex mx-auto'>
-                                    <Dropdown className="text-center mx-2"
-                                              style={{minWidth: 300}}>
-                                        { !device.selectedOrder.carId ?
-                                            <Dropdown.Toggle variant='outline-info' style={{
-                                            width: 300,
-                                            height: 40
-                                        }}>{carName || "Выберите авто"}</Dropdown.Toggle>
-                                        :
-                                            <Dropdown.Toggle variant='outline-info' disabled={true} style={{
-                                                width: 300,
-                                                height: 40
-                                            }}>{currentCar.name}</Dropdown.Toggle>
-                                        }
-                                        <Dropdown.Menu style={{minWidth: 300}}>
-                                            {user.cars.map(car =>
-                                                <Dropdown.Item
-                                                    onClick={() => {
-                                                        user.setSelectedCar(car);
-                                                        setCarName(user.selectedCar.name)
-                                                        setErr('')
-                                                    }
-                                                    }
-                                                    key={car.id}
-                                                >
-                                                    {car.name}
-                                                </Dropdown.Item>
-                                            )}
-                                        </Dropdown.Menu>
-                                    </Dropdown>
                                     <Button
                                         className='mx-2'
                                         variant='outline-success'
-                                        style={{width: 300, height: 40}}
                                         onClick={patchStatus}
                                     >
                                         {device.selectedOrder.status === 'PREPARING' ? 'Принять' : 'Перейти к доставке'}
@@ -147,6 +103,7 @@ const CourierPage = observer(() => {
                         </div>
 
                     </Container>
+                    <GoBack show={goBackVisible} onHide={() => setGoBackVisible(false)} message='Заказ уже занят'/>
                 </div>
             )
         } else {
