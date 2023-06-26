@@ -62,7 +62,7 @@ const CourierDelivery = () => {
                             {device.selectedOrder.address}
                         </h4>
                     </div>
-                    <h4 className='mt-5 text-center'>Примерный маршрут</h4>
+                    <h4 className='mt-4 text-center'>Примерный маршрут</h4>
                     <div className='w-100 px-3 mt-4'>
                         <DeliveryMap lat={lat} lon={lon}/>
                     </div>

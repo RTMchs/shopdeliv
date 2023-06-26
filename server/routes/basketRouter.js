@@ -1,7 +1,7 @@
 const Router = require('express')
 const router = new Router()
 
-const basketController = require('../controllers/basketController')
+const basketController = require('../controllers/BasketController')
 
 // ------- Проверка авторизованного пользователя -------- //
 const authMiddleware = require('../middleware/authMiddleware')
